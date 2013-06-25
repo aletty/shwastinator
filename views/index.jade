@@ -7,7 +7,7 @@ block content
   .button#stop No more!
 
   script
-    var socket = io.connect('http://localhost');
+    var socket = io.connect('192.168.2.37:3000');
     
     $('#pour').click(function(){
       socket.emit('motor on');
