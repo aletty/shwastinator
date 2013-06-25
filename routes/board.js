@@ -20,7 +20,7 @@ var boardMethods = {
     motorOn: function(motorPin){
         console.log('motor on!');
         board.digitalWrite(motorPin, board.HIGH);
-        temporal.delay(1000, function() {
+        temporal.delay(10000, function() {
             board.digitalWrite(motorPin, board.LOW);    
         });
     },
