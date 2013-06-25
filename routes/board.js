@@ -19,7 +19,7 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
 var boardMethods = {
     motorOn: function(){
         console.log('motor on!');
-        board.analogWrite(motorPin, 220);
+        board.analogWrite(motorPin, 255);
     },
     motorOff: function(){
         console.log('motor off!');
