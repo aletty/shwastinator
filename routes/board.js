@@ -1,5 +1,5 @@
 var firmata = require('firmata');
-var motorPin = 11;
+var motorPin = 13;
 
 var board = new firmata.Board('/dev/ttyACM0', function(err) {
     if (err){
@@ -12,18 +12,18 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
       + '-' + board.firmware.version.major 
       + '.' + board.firmware.version.minor);
 
-    board.pinMode(11, board.MODES.PWM);
+    board.pinMode(motorPin, board.MODES.OUTPUT);
 });    
 
 
 var boardMethods = {
     motorOn: function(){
         console.log('motor on!');
-        board.analogWrite(motorPin, 255);
+        board.analogWrite(motorPin, board.HIGH);
     },
     motorOff: function(){
         console.log('motor off!');
-        board.analogWrite(motorPin, 0);
+        board.analogWrite(motorPin, board.LOW);
     }
 };
 
