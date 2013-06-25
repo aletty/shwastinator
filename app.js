@@ -40,11 +40,11 @@ server.listen(app.get('port'));
 io.sockets.on('connection', function(socket) {
     socket.send('connected');
 
-    socket.on('motor on', function() {
-        board.boardMethods.motorOn();
+    socket.on('motor 1', function() {
+        board.boardMethods.motorOn(11);
     });
 
-    socket.on('motor off', function(){
-        board.boardMethods.motorOff();
+    socket.on('motor 2', function(){
+        board.boardMethods.motorOn(12);
     });
 });

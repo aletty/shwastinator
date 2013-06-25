@@ -12,11 +12,11 @@ block content
     // var socket = io.connect('localhost');
 
     $('#motor1').click(function(){
-      socket.emit('motor on');
+      socket.emit('motor 1');
       return false;
     });
 
     $('#motor2').click(function(){
-      socket.emit('motor off');
+      socket.emit('motor 2');
       return false;
     });  
