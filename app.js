@@ -4,13 +4,18 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
-
 var app = express();
 
+var server = require('http').createServer(app)
+  , io = require('socket.io').listen(server)
+  , routes = require('./routes')
+  , user = require('./routes/user')
+  , index = require('./routes/index')
+  , http = require('http')
+  , path = require('path')
+  , firmata = require('firmata');
+
+var board = require('./routes/board.js')
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -30,6 +35,16 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+server.listen(app.get('port'));
+
+io.sockets.on('connection', function(socket) {
+    socket.send('connected');
+
+    socket.on('motor on', function() {
+        board.boardMethods.motorOn();
+    });
+
+    socket.on('motor off', function(){
+        board.boardMethods.motorOff();
+    });
 });
