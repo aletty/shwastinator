@@ -17,10 +17,10 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
 });    
 
 var boardMethods = {
-    MotorOn: function(){
+    motorOn: function(){
         console.log('motor on!');
         board.digitalWrite(motorPin, board.HIGH);
-        temportal.delay(1000, function() {
+        temporal.delay(1000, function() {
             board.digitalWrite(motorPin, board.LOW);    
         });
     },
@@ -31,4 +31,4 @@ var boardMethods = {
 };
 
 exports.boardMethods = boardMethods;
-*/
+
