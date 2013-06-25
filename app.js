@@ -41,10 +41,12 @@ io.sockets.on('connection', function(socket) {
     socket.send('connected');
 
     socket.on('motor 1', function() {
+        board.boardMethods.setPin(11);
         board.boardMethods.motorOn(11);
     });
 
     socket.on('motor 2', function(){
+        board.boardMethods.setPin(12);
         board.boardMethods.motorOn(12);
     });
 });

@@ -11,11 +11,12 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
     console.log('Firmware: ' + board.firmware.name 
       + '-' + board.firmware.version.major 
       + '.' + board.firmware.version.minor);
-
-    board.pinMode(motorPin, board.MODES.OUTPUT);
 });    
 
 var boardMethods = {
+    setPin: function(motorPin){
+        board.pinMode(motorPin, board.MODES.OUTPUT);
+    },
     motorOn: function(motorPin){
         console.log('motor on!');
         board.digitalWrite(motorPin, board.HIGH);
