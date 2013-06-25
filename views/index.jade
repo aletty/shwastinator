@@ -1,20 +1,22 @@
 extends layout
 
 block content
-  h1 Welcome to the Shwastinator
-
-  .button#pour Pour Shot!
-  .button#stop No more!
-
+  .row
+    h1 Shwastinator
+  .row
+    .button.small-4.large-2.column#motor1 Motor 1
+  .row
+    .button.small-4.large-2.column#motor2 Motor 2
   script
-    var socket = io.connect('192.168.2.37:3000');
-    
-    $('#pour').click(function(){
+    // var socket = io.connect('192.168.2.37:3000');
+    var socket = io.connect('localhost');
+
+    $('#motor1').click(function(){
       socket.emit('motor on');
       return false;
     });
 
-    $('#stop').click(function(){
+    $('#motor2').click(function(){
       socket.emit('motor off');
       return false;
     });  

@@ -36,7 +36,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 server.listen(app.get('port'));
-
+/*
 io.sockets.on('connection', function(socket) {
     socket.send('connected');
 
@@ -48,3 +48,4 @@ io.sockets.on('connection', function(socket) {
         board.boardMethods.motorOff();
     });
 });
+*/

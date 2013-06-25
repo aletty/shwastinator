@@ -1,4 +1,5 @@
 var firmata = require('firmata');
+var temporal = require('temporal');
 var motorPin = 11;
 
 var board = new firmata.Board('/dev/ttyACM0', function(err) {
@@ -15,11 +16,13 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
     board.pinMode(motorPin, board.MODES.OUTPUT);
 });    
 
-
 var boardMethods = {
-    motorOn: function(){
+    MotorOn: function(){
         console.log('motor on!');
         board.digitalWrite(motorPin, board.HIGH);
+        temportal.delay(1000, function() {
+            board.digitalWrite(motorPin, board.LOW);    
+        });
     },
     motorOff: function(){
         console.log('motor off!');
@@ -28,3 +31,4 @@ var boardMethods = {
 };
 
 exports.boardMethods = boardMethods;
+*/
