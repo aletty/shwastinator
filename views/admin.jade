@@ -1,26 +1,19 @@
 extends layout
 
 block content
-  h4 pump 1
-  .button.dropdown.pumps#p1(data-dropdown='drop1') Pump 1
-  ul.f-dropdown#drop1(data-dropdown-content)
-    li Vodka
-    li Orange Juice
-    li Cranberry
-  h4 pump 2
-  .button.dropdown.pumps#p1(data-dropdown='drop1') Pump 2
-  h4 pump 3
-  h4 pump 4
-  h4 pump 5
-  h4 pump 6
-  h4 pump 7
-  h4 pump 8
-  h4 pump 9
-  h4 pump 10
-  h4 pump 11
-  h4 pump 12
-  h4 pump 13
-  form
+  form.custom
+    h3 Set Pumps
+    .button Add Liquid
+    h5 Pump 1
+      select.medium#liquids
+        option This is another option
+        option This is another option too
+        option Look, a third option
+    h5 Pump 2
+      select#liquids
+        option This is another option
+        option This is another option too
+        option Look, a third option
   h2 Add New Liquid
 
 
@@ -29,7 +22,7 @@ block content
 
     $('.pumps').click(funtion(){
       console.log
-    })
+    });
 
 
 
