@@ -7,7 +7,7 @@ var userSchema = new Schema({
     _orders: [{ type: Schema.Types.ObjectId, ref: 'Drink', time: Date.now }],
     tab: Number,
     image: String,
-    guest: [{Schema.Types.ObjectId, ref: 'User'}],
+    guest: [{type: Schema.Types.ObjectId, ref: 'User'}],
     admin: Boolean
 });
 
@@ -28,4 +28,4 @@ var liquidSchema = new Schema({
     Alcohol: Boolean 
 });
 
-mongoose.model('Activity', activitySchema);
+mongoose.model('Liquid', liquidSchema);

@@ -2,7 +2,9 @@
 /*
  * GET users listing.
  */
-
-exports.list = function(req, res){
-  res.send("respond with a resource");
+var models = require("../models.js");
+exports.profile = function(req, res){
+	models.User.findOne({name:req.param.user}).exec(function(err,user){
+		res.render('profile', {title: req.param.user, user: user});
+	});
 };

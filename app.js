@@ -19,15 +19,31 @@ var server = require('http').createServer(app)
 
 var board = require('./routes/board.js')
 // all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.configure(function(){
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  var uristring = 
+    process.env.MONGODB_URI ||
+    process.env.MONGOLAB_URI ||
+    'mongodb://localhost/shwastinator';
+  var mongoOptions = { db: { safe: true }};
+
+  mongoose.connect(uristring, mongoOptions, function (err, res) {
+    if (err) {
+      console.log('ERROR connecting to: ' + uristring + '. ' + err);
+    } else {
+      console.log('Succeeded connecting to:' + uristring + '.');
+    }
+  });
+});
 
 // development only
 if ('development' == app.get('env')) {
@@ -35,7 +51,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/users/:user', user.profile);
 app.get('/admin', admin.home);
 
 server.listen(app.get('port'));
