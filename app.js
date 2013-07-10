@@ -11,8 +11,10 @@ var server = require('http').createServer(app)
   , routes = require('./routes')
   , user = require('./routes/user')
   , index = require('./routes/index')
+  , admin = require('./routes/admin')
   , http = require('http')
   , path = require('path')
+  , mongoose = require('mongoose')
   , firmata = require('firmata');
 
 var board = require('./routes/board.js')
@@ -34,6 +36,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/admin', admin.home);
 
 server.listen(app.get('port'));
 
