@@ -3,7 +3,7 @@ extends layout
 block content
   form.custom
     h3 Set Pumps
-    .button Add Liquid
+    .button#addliquid Add Liquid
     h5 Pump 1
       select.medium#liquids
         option This is another option
@@ -20,10 +20,9 @@ block content
   script
     $(document).foundation();
 
-    $('.pumps').click(funtion(){
-      console.log
+
+    $('#addliquid').click(funtion {
+      console.log('clicked');
     });
-
-
 
 

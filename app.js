@@ -10,6 +10,7 @@ var server = require('http').createServer(app)
   , io = require('socket.io').listen(server)
   , routes = require('./routes')
   , user = require('./routes/user')
+  , bcrypt = require('bcrypt')
   , index = require('./routes/index')
   , admin = require('./routes/admin')
   , http = require('http')
@@ -27,9 +28,11 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-  
+
   var uristring = 
     process.env.MONGODB_URI ||
     process.env.MONGOLAB_URI ||
@@ -50,9 +53,22 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+function checkLoggedIn() {
+  return function(req, res, next) {
+    if (!req.session.user){
+      res.render('signinplease', {title: 'Sign In'});
+    } else {
+      next();
+    };
+  }
+}
+
 app.get('/', routes.index);
-app.get('/users/:user', user.profile);
+app.get('/signup', user.signup);
+app.get('/signin', user.signin);
+app.get('/users/:user',  checkLoggedIn(), user.profile);
 app.get('/admin', admin.home);
+app.post('/newUser', user.create)
 
 server.listen(app.get('port'));
 

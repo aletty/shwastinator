@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     name: String,
     password: String,
+    approved: Boolean,
     _orders: [{ type: Schema.Types.ObjectId, ref: 'Drink', time: Date.now }],
     tab: Number,
     image: String,
@@ -11,7 +12,7 @@ var userSchema = new Schema({
     admin: Boolean
 });
 
-mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
 var drinkSchema = new Schema({
     _liquids: [{ type: Schema.Types.ObjectId, ref: 'Liquid' }],
@@ -21,11 +22,15 @@ var drinkSchema = new Schema({
     image: String
 });
 
-mongoose.model('Drink', drinkSchema);
+var Drink = mongoose.model('Drink', drinkSchema);
 
 var liquidSchema = new Schema({
     name: String,
     Alcohol: Boolean 
 });
 
-mongoose.model('Liquid', liquidSchema);
+var Liquid = mongoose.model('Liquid', liquidSchema);
+
+exports.User = User;
+exports.Drink = Drink;
+exports.Liquid = Liquid;
