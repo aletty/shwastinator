@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  form#newliquid
+    .row
+      h3 Add a New Liquid Type
+    .row
+      .large-4.small-10.columns
+        label Input Label
+        input(type='text', placeholder='Liquid', name='name')
+    .row
+      input#alcoholic(type='checkbox', name = 'alcoholic')
+      | Alcoholic?
+    .row
+      .button#addliquid
+        | Add to DB
+
+  script
+    $('#addliquid').click(function(){
+      $.post("/addliquid", $('#newliquid').serialize());
+    })

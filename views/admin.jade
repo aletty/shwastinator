@@ -3,26 +3,61 @@ extends layout
 block content
   form.custom
     h3 Set Pumps
-    .button#addliquid Add Liquid
+    a(href = '/liquid')
+      .button#addliquid Add Liquid
     h5 Pump 1
       select.medium#liquids
-        option This is another option
-        option This is another option too
-        option Look, a third option
+        for liquid in liquids
+          option #{liquid.name}
     h5 Pump 2
-      select#liquids
-        option This is another option
-        option This is another option too
-        option Look, a third option
-  h2 Add New Liquid
-
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 3
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 4
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 5
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 6
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 7
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 8
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 9
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 10
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 11
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 12
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
+    h5 Pump 13
+      select.medium#liquids
+        for liquid in liquids
+          option #{liquid.name}
 
   script
     $(document).foundation();
-
-
-    $('#addliquid').click(funtion {
-      console.log('clicked');
-    });
-
 

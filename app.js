@@ -68,7 +68,9 @@ app.get('/signup', user.signup);
 app.get('/signin', user.signin);
 app.get('/users/:user',  checkLoggedIn(), user.profile);
 app.get('/admin', admin.home);
-app.post('/newUser', user.create)
+app.post('/newUser', user.create);
+app.get('/liquid', admin.liquid);
+app.post('/addliquid', admin.addliquid)
 
 server.listen(app.get('port'));
 
