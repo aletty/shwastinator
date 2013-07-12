@@ -36,11 +36,13 @@ exports.create = function(req, res){
 }
 
 exports.login = function(req,res){
-  User.find({name: req.body.username}).exec(function(err, user){
+  console.log("login");
+  models.User.find({name: req.body.username}).exec(function(err, user){
     if (err) throw err;
     if (user.length == 0){
       res.send({verified: false});
     } else {
+      console.log("user");
       var rightEnteredPassword = user[0].password;
       var success  = bcrypt.compareSync(req.body.uncryptpass, rightEnteredPassword);
       if (success) {

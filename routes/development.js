@@ -57,7 +57,7 @@ exports.drinks = function(req, res){
         if (err) return ("error saving Rum and Coke", err);
         console.log('Rum and Coke saved');
     });
-    var voj = new models.Liquid({_liquids: [vodka, oj], name: "Vodka Orange Juice", cost: 2, price: 3});
+    var voj = new models.Drink({_liquids: [vodka, oj], name: "Vodka Orange Juice", cost: 2, price: 3});
     voj.save(function(err){
         if (err) return ("error saving Vodka Orange Juice", err);
         console.log('Vodka Orange Juice saved');

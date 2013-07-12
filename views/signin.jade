@@ -9,7 +9,7 @@ block content
     .row
       input.input-text.logins#password(type="password", placeholder="Password")
     .row
-      button#signup(type="Submit")
+      button#signin(type="Submit")
         b Log In
       |         Don't have an Account?         
       a(href = '/signup')
@@ -17,6 +17,7 @@ block content
           b Sign Up
   script
     $('#signin').click(function(){
+      console.log("HELLO");
       $.ajax({
         url: '/verify',
         type: 'POST',

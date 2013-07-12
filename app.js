@@ -83,7 +83,9 @@ app.post('/newUser', user.create);
 app.get('/liquid', checkAdmin(), admin.liquid);
 app.post('/addLiquid', admin.addLiquid);
 app.get('/createUsers', dev.createUsers);
-app.get('/drinks', dev.drinks)
+app.get('/drinks', dev.drinks);
+app.post('/verify', user.login);
+app.get('/createDrinks', admin.createDrinks);
 
 server.listen(app.get('port'));
 

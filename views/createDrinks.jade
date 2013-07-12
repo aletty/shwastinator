@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .small-6.columns
+    h3 Create a New Drink
+  .small-6.columns
+    a(href = '/liquid')
+      .button#addliquid Add Liquid
+
+      
+  form.custom
+    .row
+      .small-6.columns
+        h5 Drink Name
+      .small-3.columns
+        h5 Cost
+      .small-3.columns
+        h5 Price
+    .row
+      .small-6.columns
+        input#drinkname(type='text', placeholder = 'rum and coke');
+      .small-3.columns
+        input#cost(type='text', placeholder = '1.5');
+      .small-3.columns
+        input#price(type='text', placeholder = '3');
+    .row
+      .small-3.columns
+        h5 Ingredients
+      .small-2.columns
+        h5 Units
+      .small-7.columns
+    .row
+      .small-3.columns
+        select#liquids
+          for liquid in liquids
+            option #{liquid.name}
+      .small-1.columns
+        input#units(type='text', placeholder = '1');
+      .small-7.columns

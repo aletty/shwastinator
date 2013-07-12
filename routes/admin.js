@@ -23,3 +23,9 @@ exports.addLiquid = function(req, res){
     });
     res.redirect("/admin");
 };
+
+exports.createDrinks = function(req, res) {
+    models.Liquid.find().exec(function (err, liquids){
+        res.render('createDrinks', {title: 'Create Drinks', liquids:liquids});        
+    })
+}
