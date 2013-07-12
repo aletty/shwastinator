@@ -14,8 +14,6 @@ exports.liquid = function(req, res) {
 
 exports.addLiquid = function(req, res){
     console.log("adding liquid object");
-    console.log(req.body);
-    console.log(req.body.name);
     var newliquid = new models.Liquid({name: req.body.name, alcoholic: req.body.alcoholic});
     newliquid.save(function(err){
         if (err) return ("error saving liquid", err);
