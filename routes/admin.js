@@ -1,8 +1,8 @@
 var models = require("../models.js");
 
 exports.home = function(req, res) {
+    console.log(req.session.user)
     models.Liquid.find().exec(function (err, liquids){
-        console.log(liquids);
         res.render('admin', {title: 'Admin Page', liquids:liquids});        
     })
 }
@@ -12,7 +12,7 @@ exports.liquid = function(req, res) {
 }
 
 
-exports.addliquid = function(req, res){
+exports.addLiquid = function(req, res){
     console.log("adding liquid object");
     console.log(req.body);
     console.log(req.body.name);

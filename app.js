@@ -15,6 +15,7 @@ var server = require('http').createServer(app)
   , admin = require('./routes/admin')
   , http = require('http')
   , path = require('path')
+  , dev = require('./routes/development')
   , mongoose = require('mongoose')
   , firmata = require('firmata');
 
@@ -63,14 +64,26 @@ function checkLoggedIn() {
   }
 }
 
+function checkAdmin() {
+  return function(req, res, next) {
+    if (!req.session.user){
+      res.render('signinplease', {title: 'Sign In'});
+    } else {
+      next();
+    };
+  }
+}
+
 app.get('/', routes.index);
 app.get('/signup', user.signup);
 app.get('/signin', user.signin);
 app.get('/users/:user',  checkLoggedIn(), user.profile);
-app.get('/admin', admin.home);
+app.get('/admin', checkAdmin(), admin.home);
 app.post('/newUser', user.create);
-app.get('/liquid', admin.liquid);
-app.post('/addliquid', admin.addliquid)
+app.get('/liquid', checkAdmin(), admin.liquid);
+app.post('/addLiquid', admin.addLiquid);
+app.get('/createUsers', dev.createUsers);
+app.get('/drinks', dev.drinks)
 
 server.listen(app.get('port'));
 

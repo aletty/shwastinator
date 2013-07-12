@@ -16,9 +16,9 @@ var User = mongoose.model('User', userSchema);
 
 var drinkSchema = new Schema({
     _liquids: [{ type: Schema.Types.ObjectId, ref: 'Liquid' }],
-    Name: String,
-    Cost: Number,
-    Price: Number,
+    name: String,
+    cost: Number,
+    price: Number,
     image: String
 });
 

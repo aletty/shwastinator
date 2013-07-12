@@ -1,10 +1,15 @@
 extends layout
 
 block content
+  .row
+    .large-3.small-6.columns
+      h3 Set Pumps
+    .large-4.small-6.columns
+      a(href = '/liquid')
+        .button#addliquid Add Liquid
+    .large-3
+      
   form.custom
-    h3 Set Pumps
-    a(href = '/liquid')
-      .button#addliquid Add Liquid
     h5 Pump 1
       select.medium#liquids
         for liquid in liquids
