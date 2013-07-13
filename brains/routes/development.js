@@ -33,6 +33,11 @@ exports.createUsers = function(req, res){
 
 exports.drinks = function(req, res){
     // Populate database with liquids and drinks
+    var empty = new models.Liquid({name: "Empty", alcoholic: false});
+    empty.save(function(err){
+        if (err) return ("error saving Empty", err);
+        console.log('Empty saved');
+    });
     var rum = new models.Liquid({name: "Rum", alcoholic: true});
     rum.save(function(err){
         if (err) return ("error saving Rum", err);
@@ -62,6 +67,25 @@ exports.drinks = function(req, res){
     voj.save(function(err){
         if (err) return ("error saving Vodka Orange Juice", err);
         console.log('Vodka Orange Juice saved');
+    });
+    var shwaste = new models.Shwastinator({
+        pump1: "Empty",
+        pump2: "Empty",
+        pump3: "Empty",
+        pump4: "Empty",
+        pump5: "Empty",
+        pump6: "Empty",
+        pump7: "Empty",
+        pump8: "Empty",
+        pump9: "Empty",
+        pump10: "Empty",
+        pump11: "Empty",
+        pump12: "Empty",
+        pump13: "Empty",
+    });
+    shwaste.save(function(err){
+        if (err) return ("error saving Shwastinator", err);
+        console.log('Shwastinator saved');
     });
 
     res.send("Liquids and drinks populated");

@@ -2,11 +2,22 @@ extends layout
 
 block content
   .row
-    h1 Shwastinator
-  .row
-    .button.small-12.column#motor1 Motor 1
-  .row
-    .button.small-4.large-2.column#motor2 Motor 2
+    .small-3.columns
+      include navbar
+    .small-9.columns
+      .row
+        h1 Shwastinator
+      for drink in drinks
+        .row
+          .button #{drink.name}
+      
+
+      .row
+        .button#motor1 Motor 1
+      .row
+        .button#motor2 Motor 2
+  
+
   script
     var socket = io.connect('192.168.2.37:3000');
     // var socket = io.connect('localhost');
