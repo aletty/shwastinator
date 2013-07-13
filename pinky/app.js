@@ -64,7 +64,9 @@ socket.on('recipe 1', function(data) {
   var recipe = data.drink
   for (var i=0;i<recipe.length;i++) {
     board.boardMethods.setPin(recipe[i][0]);
-    board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);    
+    board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
+    temporal.delay(recipe[i][1]*1000, function(){
+    });
   }
 });
 
