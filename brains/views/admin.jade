@@ -70,6 +70,5 @@ block content
     $(document).foundation();
 
     $('#save').click(function() {
-      console.log( $("#pump1").val());
       $.post('/saveSetup', $('#setup').serialize());
     })
