@@ -63,3 +63,8 @@ exports.saveSetup = function(req, res){
         console.log('Shwastinator saved');
     })
 }
+exports.approveUsers = function(req, res){
+    models.User.find({approved:false}).exec(function (err, users){
+        res.render('ApproveUsers', {title: 'Approve Users', user: req.session.user, users:users});        
+    })
+}

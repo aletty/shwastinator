@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .row
+    .small-3.columns
+      include navbar.jade
+      
+    .small-9.columns
+      .row
+        for user in users
+          p #{user.name}
