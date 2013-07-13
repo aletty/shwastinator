@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .row 
+    .small-3.columns
+      include navbar
+    .small-9.columns
+      .row
+        .small-4.columns
+          img(src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR-zX-OffhvDtV8_uXxGUmTXJnpHkM3hR-utvR3uT4uCqT3Ve0yDw')
+        .small-8.columns
+          h1 #{user.name}
+          h3 Current Tab $#{user.tab}
+      .row
+        for order in user._orders
+          h5 order
+

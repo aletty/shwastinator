@@ -7,8 +7,8 @@ var bcrypt = require('bcrypt');
 
 
 exports.profile = function(req, res){
-	models.User.findOne({name:req.param.user}).exec(function(err,user){
-		res.render('profile', {title: req.param.user, user: user});
+	models.User.findOne({name:req.session.user.name}).exec(function(err,user){
+		res.render('profile', {title: user.name, user: user});
 	});
 };
 

@@ -74,10 +74,10 @@ function checkAdmin() {
   }
 }
 
-app.get('/', routes.index);
+app.get('/', checkLoggedIn(), routes.index);
 app.get('/signup', user.signup);
 app.get('/signin', user.signin);
-app.get('/users/:user',  checkLoggedIn(), user.profile);
+app.get('/profile',  checkLoggedIn(), user.profile);
 app.get('/admin', checkAdmin(), admin.home);
 app.post('/newUser', user.create);
 app.get('/liquid', checkAdmin(), admin.liquid);
@@ -86,6 +86,7 @@ app.get('/createUsers', dev.createUsers);
 app.get('/drinks', dev.drinks);
 app.post('/verify', user.login);
 app.get('/createDrinks', admin.createDrinks);
+app.post('/saveSetup', admin.saveSetup);
 
 server.listen(app.get('port'));
 

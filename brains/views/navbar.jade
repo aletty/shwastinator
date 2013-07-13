@@ -1,0 +1,19 @@
+
+ul.side-nav.hide-for-small
+  li 
+    a(href = '/profile') Hello #{user.name}
+  li.divider
+  li.active
+      a(href='/') Home
+  li
+    a(href='/profile') Profile
+  li.divider
+  if (user.admin)
+    li
+      h5 Admin Pages
+    li
+      a(href='/admin') Set Up Shwastinator
+    li
+      a(href='/liquid') Add another liquid
+    li
+      a(href ='createDrinks') Add a New Drink

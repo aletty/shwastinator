@@ -31,6 +31,26 @@ var liquidSchema = new Schema({
 
 var Liquid = mongoose.model('Liquid', liquidSchema);
 
+var shwasteSchema = new Schema({
+    pump1: String,
+    pump2: String,
+    pump3: String,
+    pump4: String,
+    pump5: String,
+    pump6: String,
+    pump7: String,
+    pump8: String,
+    pump9: String,
+    pump10: String,
+    pump11: String,
+    pump12: String,
+    pump13: String,
+});
+
+var Shwastinator = mongoose.model('Shwastinator', shwasteSchema);
+
+exports.Shwastinator = Shwastinator;
 exports.User = User;
 exports.Drink = Drink;
 exports.Liquid = Liquid;
+
