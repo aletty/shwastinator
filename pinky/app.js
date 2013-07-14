@@ -53,7 +53,7 @@ socket.on('recipe 1', function(data) {
       board.boardMethods.setPin(i);
       board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
     } else {
-      temporal.delay(recipe[i-1][1]*1000, function(){
+      temporal.delay(recipe[i-1][1]*1000, function(recipe,i){
         board.boardMethods.setPin(i);
         board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
       });
