@@ -30,26 +30,26 @@ var boardMethods = {
     processPumps: function(){
         async.series({
             one: function(callback){
-                this.togglePump(1,pumpStatus[1]);
-                temporal.delay(pumpStatus.1, function(){
+                boardMethods.togglePump(1,pumpStatus[1]);
+                temporal.delay(pumpStatus[1], function(){
                     callback(null, 1);
                 });
             },
             two: function(callback){
-                this.togglePump(2,pumpStatus[2]);
-                temporal.delay(pumpStatus.2, function(){
+                boardMethods.togglePump(2,pumpStatus[2]);
+                temporal.delay(pumpStatus[2], function(){
                     callback(null, 2);
                 });
             },
             three: function(callback){
-                this.togglePump(3,pumpStatus[3]);
-                temporal.delay(pumpStatus.3, function(){
+                boardMethods.togglePump(3,pumpStatus[3]);
+                temporal.delay(pumpStatus[3], function(){
                     callback(null, 3);
                 });
             },
             four: function(callback){
-                this.togglePump(4,pumpStatus[4]);
-                temporal.delay(pumpStatus.4, function(){
+                boardMethods.togglePump(4,pumpStatus[4]);
+                temporal.delay(pumpStatus[4], function(){
                     callback(null, 4);
                 });
             },
