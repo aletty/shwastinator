@@ -16,9 +16,6 @@ var server = require('http').createServer(app)
   , temporal = require('temporal')
   , board = require('./routes/board.js');
 
-board.boardMethods.setPin(3);
-board.boardMethods.setPin(4);
-
 // all environments
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -53,9 +50,11 @@ socket.on('recipe 1', function(data) {
   var recipe = data.drink;
   for (var i=0;i<recipe.length;i++) {
     if (i == 0){
+      board.boardMethods.setPin(i);
       board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
     } else {
       temporal.delay(recipe[i-1][1]*1000, function(){
+        board.boardMethods.setPin(i);
         board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
       });
     }
