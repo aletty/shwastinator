@@ -48,9 +48,9 @@ socket.on('connect', function() {
 
 socket.on('recipe 1', function(data) {
   var recipe = data.drink;
-  board.setPins();
+  board.boardMethods.setPins();
   board.pumpStatus.update(recipe);
-  console.log(pumpStatus)
+  console.log(board.pumpStatus)
 });
 
 socket.on('led 2', function() {
