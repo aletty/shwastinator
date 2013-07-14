@@ -12,9 +12,8 @@ var server = require('http').createServer(app)
   , index = require('./routes/index')
   , http = require('http')
   , path = require('path')
-  , mongoose = require('mongoose')
-  , firmata = require('firmata');
-  // , board = require('./routes/board.js');
+  , firmata = require('firmata')
+  , board = require('./routes/board.js');
 
 // all environments
 app.configure(function(){
@@ -40,14 +39,15 @@ app.get('/', routes.index);
 
 server.listen(app.get('port'));
 
-var socket = io.connect('192.168.2.37', {port:4000});
+var socket = io.connect('192.168.1.37', {port:4000});
 
 socket.on('connect', function() {
   console.log('connected on pi (yummy)');
 });
 
 socket.on('recipe 1', function(data) {
-  var recipe = data.drink
+  console.log('recipe 1');
+  var recipe = data.drink;
   for (var i=0;i<recipe.length;i++) {
     board.boardMethods.setPin(recipe[i][0]);
     var res = board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
