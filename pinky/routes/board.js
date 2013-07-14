@@ -14,8 +14,11 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
 });    
 
 var boardMethods = {
-    setPin: function(motorPin){
-        board.pinMode(motorPin, board.MODES.OUTPUT);
+    setPins: function(){
+        board.pinMode(1, board.MODES.OUTPUT);
+        board.pinMode(2, board.MODES.OUTPUT);
+        board.pinMode(3, board.MODES.OUTPUT);
+        board.pinMode(4, board.MODES.OUTPUT);        
     },
     motorOn: function(motorPin,pourTime){
         console.log('motor on!');
@@ -30,4 +33,17 @@ var boardMethods = {
     }
 };
 
+var pumpStatus = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    update: function(recipe){
+        for (i=0; i<recipe.length; i++){
+            this[recipe[i][0]] = recipe[i][1];
+        }
+    }
+};
+
 exports.boardMethods = boardMethods;
+exports.pumpStatus = pumpStatus;

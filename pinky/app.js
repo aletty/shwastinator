@@ -48,17 +48,9 @@ socket.on('connect', function() {
 
 socket.on('recipe 1', function(data) {
   var recipe = data.drink;
-  board.boardMethods.setPin(3);
-  board.boardMethods.setPin(4);
-  for (var i=0;i<recipe.length;i++) {
-    if (i == 0){
-      board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
-    } else {
-      temporal.delay(recipe[i-1][1]*1000, function(recipe,i){
-        board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
-      });
-    }
-  };
+  board.setPins();
+  board.pumpStatus.update(recipe);
+  console.log(pumpStatus)
 });
 
 socket.on('led 2', function() {
