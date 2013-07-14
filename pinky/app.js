@@ -46,12 +46,18 @@ socket.on('connect', function() {
 });
 
 socket.on('recipe 1', function(data) {
-  console.log('recipe 1');
   var recipe = data.drink;
   for (var i=0;i<recipe.length;i++) {
-    board.boardMethods.setPin(recipe[i][0]);
-    var res = board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
-    };
+    if (i > 0){
+      setTimeout(function(i){
+        board.boardMethods.setPin(recipe[i][0]);
+        board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
+      }, recipe[i-1][1]*1000);
+    } else {
+      board.boardMethods.setPin(recipe[i][0]);
+      board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
+    }
+  };
 });
 
 socket.on('led 2', function() {
