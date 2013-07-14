@@ -24,9 +24,9 @@ var boardMethods = {
     },
     togglePump: function(pumpPin,pourTime){
         board.digitalWrite(pumpPin, board.HIGH);
-        temporal.delay(pourTime, function() {
+        setTimeout(function() {
             board.digitalWrite(pumpPin, board.LOW);    
-        });
+        }, pourTime);
     },
     processPumps: function(){
         async.series({
