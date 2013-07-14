@@ -46,14 +46,10 @@ socket.on('connect', function() {
   console.log('connected on pi (yummy)');
 });
 
-socket.on('recipe 1', function(data) {
+socket.on('drink', function(data) {
   var recipe = data.drink;
   board.boardMethods.setPins();
   board.pumpStatus.update(recipe);
   console.log(board.pumpStatus);
   board.boardMethods.processPumps();
-});
-
-socket.on('led 2', function() {
-  console.log('led 2');
 });
