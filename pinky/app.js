@@ -13,7 +13,11 @@ var server = require('http').createServer(app)
   , http = require('http')
   , path = require('path')
   , firmata = require('firmata')
+  , temporal = require('temporal')
   , board = require('./routes/board.js');
+
+board.boardMethods.setPin(3);
+board.boardMethods.setPin(4);
 
 // all environments
 app.configure(function(){
@@ -48,15 +52,12 @@ socket.on('connect', function() {
 socket.on('recipe 1', function(data) {
   var recipe = data.drink;
   for (var i=0;i<recipe.length;i++) {
-    if (i > 0){
-      setTimeout(function(){
-	console.log(recipe);
-        board.boardMethods.setPin(recipe[i][0]);
-        board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
-      }, recipe[i-1][1]*1000);
-    } else {
-      board.boardMethods.setPin(recipe[i][0]);
+    if (i == 0){
       board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
+    } else {
+      temporal.delay(recipe[i-1][1]*1000, function(){
+        board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
+      });
     }
   };
 });
