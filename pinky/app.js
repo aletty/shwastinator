@@ -50,6 +50,5 @@ socket.on('drink', function(data) {
   var recipe = data.drink;
   board.boardMethods.setPins();
   board.pumpStatus.update(recipe);
-  console.log(board.pumpStatus);
   board.boardMethods.processPumps();
 });
