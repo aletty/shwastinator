@@ -51,8 +51,7 @@ socket.on('recipe 1', function(data) {
   for (var i=0;i<recipe.length;i++) {
     board.boardMethods.setPin(recipe[i][0]);
     var res = board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);
-    });
-  }
+    };
 });
 
 socket.on('led 2', function() {
