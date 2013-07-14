@@ -19,7 +19,8 @@ var boardMethods = {
         board.pinMode(1, board.MODES.OUTPUT);
         board.pinMode(2, board.MODES.OUTPUT);
         board.pinMode(3, board.MODES.OUTPUT);
-        board.pinMode(4, board.MODES.OUTPUT);        
+        board.pinMode(4, board.MODES.OUTPUT);
+        board.pinMode(5, board.MODES.OUTPUT);
     },
     togglePump: function(pumpPin,pourTime){
         board.digitalWrite(pumpPin, board.HIGH);
@@ -31,27 +32,33 @@ var boardMethods = {
         async.series({
             one: function(callback){
                 boardMethods.togglePump(1,pumpStatus[1]);
-                temporal.delay(pumpStatus[1], function(){
+                setTimeout(function(){
                     callback(null, 1);
-                });
+                }, pumpStatus[1]);
             },
             two: function(callback){
                 boardMethods.togglePump(2,pumpStatus[2]);
-                temporal.delay(pumpStatus[2], function(){
+                setTimeout(function(){
                     callback(null, 2);
-                });
+                }, pumpStatus[2]);
             },
             three: function(callback){
                 boardMethods.togglePump(3,pumpStatus[3]);
-                temporal.delay(pumpStatus[3], function(){
+                setTimeout(function(){
                     callback(null, 3);
-                });
+                }, pumpStatus[3]);
             },
             four: function(callback){
                 boardMethods.togglePump(4,pumpStatus[4]);
-                temporal.delay(pumpStatus[4], function(){
+                setTimeout(function(){
                     callback(null, 4);
-                });
+                }, pumpStatus[4]);
+            },
+            five: function(callback){
+                boardMethods.togglePump(5,pumpStatus[5]);
+                setTimeout(function(){
+                    callback(null, 5);
+                }, pumpStatus[5]);
             },
             reset: function(callback){
                 pumpStatus.reset();
@@ -66,6 +73,7 @@ var pumpStatus = {
     2: 0,
     3: 0,
     4: 0,
+    5: 0,
     update: function(recipe){
         for (i=0; i<recipe.length; i++){
             this[recipe[i][0]] = recipe[i][1]*1000;
@@ -75,7 +83,8 @@ var pumpStatus = {
         this[1] = 0;
         this[2] = 0;        
         this[3] = 0;
-        this[4] = 0;        
+        this[4] = 0;
+        this[5] = 0;        
     }
 };
 
