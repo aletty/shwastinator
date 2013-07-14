@@ -23,6 +23,7 @@ var boardMethods = {
         temporal.delay(pourTime, function() {
             board.digitalWrite(motorPin, board.LOW);    
         });
+        return false;
     },
     motorOff: function(){
         console.log('motor off!');
