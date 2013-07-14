@@ -13,7 +13,6 @@ var server = require('http').createServer(app)
   , http = require('http')
   , path = require('path')
   , firmata = require('firmata')
-  , temporal = require('temporal')
   , board = require('./routes/board.js');
 
 // all environments

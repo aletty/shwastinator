@@ -6,8 +6,6 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
         console.log(err);
         return;
     }
-
-    console.log('connected');
     console.log('Firmware: ' + board.firmware.name 
       + '-' + board.firmware.version.major 
       + '.' + board.firmware.version.minor);
@@ -20,6 +18,14 @@ var boardMethods = {
         board.pinMode(3, board.MODES.OUTPUT);
         board.pinMode(4, board.MODES.OUTPUT);
         board.pinMode(5, board.MODES.OUTPUT);
+        board.pinMode(6, board.MODES.OUTPUT);
+        board.pinMode(7, board.MODES.OUTPUT);
+        board.pinMode(8, board.MODES.OUTPUT);
+        board.pinMode(9, board.MODES.OUTPUT);
+        board.pinMode(10, board.MODES.OUTPUT);
+        board.pinMode(11, board.MODES.OUTPUT);
+        board.pinMode(12, board.MODES.OUTPUT);
+        board.pinMode(13, board.MODES.OUTPUT);
     },
     togglePump: function(pumpPin,pourTime){
         board.digitalWrite(pumpPin, board.HIGH);
