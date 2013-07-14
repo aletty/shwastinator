@@ -31,34 +31,51 @@ var boardMethods = {
     processPumps: function(){
         async.series({
             one: function(callback){
-                boardMethods.togglePump(1,pumpStatus[1]);
-                setTimeout(function(){
+                if (pumpStatus[1]){
+                    boardMethods.togglePump(1,pumpStatus[1]);
+                    setTimeout(function(){
+                        callback(null, 1);
+                    }, pumpStatus[1]);                    
+                } else {
                     callback(null, 1);
-                }, pumpStatus[1]);
+                }
             },
             two: function(callback){
-                boardMethods.togglePump(2,pumpStatus[2]);
-                setTimeout(function(){
+                if (pumpStatus[2]){
+                    boardMethods.togglePump(2,pumpStatus[2]);
+                    setTimeout(function(){
+                        callback(null, 2);
+                    }, pumpStatus[2]);                    
+                } else {
                     callback(null, 2);
-                }, pumpStatus[2]);
-            },
+                }            },
             three: function(callback){
-                boardMethods.togglePump(3,pumpStatus[3]);
-                setTimeout(function(){
+                if (pumpStatus[3]){
+                    boardMethods.togglePump(3,pumpStatus[3]);
+                    setTimeout(function(){
+                        callback(null, 3);
+                    }, pumpStatus[3]);                    
+                } else {
                     callback(null, 3);
-                }, pumpStatus[3]);
-            },
+                }            },
             four: function(callback){
-                boardMethods.togglePump(4,pumpStatus[4]);
-                setTimeout(function(){
+                if (pumpStatus[4]){
+                    boardMethods.togglePump(4,pumpStatus[4]);
+                    setTimeout(function(){
+                        callback(null, 4);
+                    }, pumpStatus[4]);                    
+                } else {
                     callback(null, 4);
-                }, pumpStatus[4]);
-            },
+                }            },
             five: function(callback){
-                boardMethods.togglePump(5,pumpStatus[5]);
-                setTimeout(function(){
+                if (pumpStatus[5]){
+                    boardMethods.togglePump(5,pumpStatus[5]);
+                    setTimeout(function(){
+                        callback(null, 5);
+                    }, pumpStatus[5]);                    
+                } else {
                     callback(null, 5);
-                }, pumpStatus[5]);
+                }
             },
             reset: function(callback){
                 pumpStatus.reset();
