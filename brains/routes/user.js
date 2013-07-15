@@ -7,8 +7,9 @@ var bcrypt = require('bcrypt');
 
 
 exports.profile = function(req, res){
-	models.User.findOne({name:req.session.user.name}).exec(function(err,user){
-		res.render('profile', {title: user.name, user: user});
+	models.User.findOne({name:req.session.user.name}).populate('_orders').exec(function(err,user){
+		console.log(user);
+    res.render('profile', {title: user.name, user: user});
 	});
 };
 
@@ -21,13 +22,10 @@ exports.signup = function(req, res){
 }
 
 exports.create = function(req, res){
-  console.log(req.body);
   console.log("username:", req.body.username);
-  console.log("password:", req.body.uncryptpass);
   
   var hashedPassword = bcrypt.hashSync(req.body.uncryptpass, 10);
-  var new_user = new models.User({name: req.body.username, password: hashedPassword});
-  console.log('FLAG!!!');
+  var new_user = new models.User({name: req.body.username, password: hashedPassword, approved: false});
   new_user.save(function(err){
     if (err) return console.log("error while saving new user" + req.body.username, err);
       req.session.user = new_user;
@@ -52,3 +50,16 @@ exports.login = function(req,res){
     }
   });
 }
+
+exports.orderDrink = function(req, res){
+  console.log(req.body.drinkOrdered);
+  models.Drink.find({name: req.body.drinkOrdered}).exec(function (err, drink){
+    models.User.update({name:req.session.user.name}, 
+      {$inc: {tab: drink[0].price}, $push: {_orders:drink}}, function (err, numberAffected, raw) {
+        if (err) return handleError(err);
+        console.log('The number of updated documents was %d', numberAffected);
+        console.log('The raw response from Mongo was ', raw);
+    });
+  })
+}
+

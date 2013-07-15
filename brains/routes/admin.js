@@ -4,12 +4,9 @@ var async = require("async");
 exports.home = function(req, res) {
     console.log(req.session.user)
     models.Liquid.find().exec(function (err, liquids){
-        models.Shwastinator.find().exec(function (err, Shwastinator){
-            res.render('admin', {title: 'Admin Page', 
-                user: req.session.user, 
-                Shwastinator: Shwastinator, 
-                liquids:liquids});        
-        })
+        res.render('admin', {title: 'Admin Page', 
+            user: req.session.user, 
+            liquids:liquids});        
     })
 }
 
@@ -65,5 +62,12 @@ exports.saveSetup = function(req, res){
 exports.approveUsers = function(req, res){
     models.User.find({approved:false}).exec(function (err, users){
         res.render('ApproveUsers', {title: 'Approve Users', user: req.session.user, users:users});        
+    })
+}
+
+exports.approved = function(req,res) {
+    console.log(req.body);
+    models.User.update({name:req.body.userToApp}, {approved:true}).exec(function (err, user){
+        console.log(user);
     })
 }

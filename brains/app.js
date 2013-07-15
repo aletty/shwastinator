@@ -81,13 +81,15 @@ app.get('/profile',  checkLoggedIn(), user.profile);
 app.get('/admin', checkAdmin(), admin.home);
 app.post('/newUser', user.create);
 app.get('/liquid', checkAdmin(), admin.liquid);
-app.post('/addLiquid', admin.addLiquid);
+app.post('/addLiquid', checkAdmin(), admin.addLiquid);
 app.get('/createUsers', dev.createUsers);
 app.get('/drinks', dev.drinks);
 app.post('/verify', user.login);
-app.get('/createDrinks', admin.createDrinks);
-app.post('/saveSetup', admin.saveSetup);
+app.get('/createDrinks', checkAdmin(), admin.createDrinks);
+app.post('/saveSetup', checkAdmin(), admin.saveSetup);
 app.get('/approveUsers', checkAdmin(), admin.approveUsers);
+app.post('/approved', admin.approved);
+app.post('/orderDrink', checkLoggedIn(), user.orderDrink);
 
 server.listen(app.get('port'));
 

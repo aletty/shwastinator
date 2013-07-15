@@ -9,7 +9,7 @@ block content
         h1 Shwastinator
       for drink in drinks
         .row
-          .button #{drink.name}
+          .button.order(name = '#{drink.name}') #{drink.name}
       
 
       .row
@@ -21,6 +21,12 @@ block content
   script
     var socket = io.connect('192.168.2.37:3000');
     // var socket = io.connect('localhost');
+    $('.order').click(function(){
+      console.log($(this).attr('name'));
+      $.post('/orderDrink', {drinkOrdered: $(this).attr('name')})
+      return false;
+    })
+
 
     $('#motor1').click(function(){
       socket.emit('motor 1');
