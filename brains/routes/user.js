@@ -7,9 +7,10 @@ var bcrypt = require('bcrypt');
 
 
 exports.profile = function(req, res){
-	models.User.findOne({name:req.session.user.name}).populate('_orders').exec(function(err,user){
+  console.log(req.session.user.name);
+	models.User.find({name:req.session.user.name}).populate('_orders', null, null, { sort: [['order', 'asc']] }).exec(function(err,user){
 		console.log(user);
-    res.render('profile', {title: user.name, user: user});
+    res.render('profile', {title: user.name, user: user[0]});
 	});
 };
 

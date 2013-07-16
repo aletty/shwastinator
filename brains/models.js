@@ -32,6 +32,13 @@ var liquidSchema = new Schema({
 
 var Liquid = mongoose.model('Liquid', liquidSchema);
 
+var orderschema = new Schema({
+    orders: [{ type: Schema.Types.ObjectId, ref: 'Drink', time: Date.now }]
+});
+
+var Orders = mongoose.model('Orders', orderschema);
+
+exports.Orders = Orders;
 exports.User = User;
 exports.Drink = Drink;
 exports.Liquid = Liquid;

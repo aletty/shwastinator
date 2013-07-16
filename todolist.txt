@@ -1,0 +1,28 @@
+todo:
+- Delete old Shwastinator setUp
+- All time favorite Drinks
+  - for the whole Bar
+  - For Users
+- Drink Of the Night
+  - for the Whole Bar
+  - for users
+
+- Allow approved Users to add guests
+  ??? should guests be automatically approved????
+???Tally marks for the night???be could cool... -> only visable to yourself..?
+- See Other User profiles
+- Create new Drinks
+- Order Drinks
+????Cup size...?????
+???should we care about alcsh types??? ie cosik vs smirnoff..
+    if we have them as different prices they should still be able to me mixed into drinks that require vodka ..etc.
+- Actually order drinks.....
+- On the setup page have it default to the last liquid settings not just 'Empty'
+- Navbar active links
+- Keep people from making blank passwords
+- Keep people from having duplicate usernames
+- Admin page to change ballance of users...????
+- Only allowed to order drinks when you are approved
+
+Done
+- Admin Page to aprove new users
