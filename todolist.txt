@@ -20,7 +20,6 @@ todo:
 - On the setup page have it default to the last liquid settings not just 'Empty'
 - Navbar active links
 - Keep people from making blank passwords
-- Keep people from having duplicate usernames
 - Admin page to change ballance of users...????
 - Only allowed to order drinks when you are approved
 
@@ -33,5 +32,4 @@ add to package.json
 
 Done
 - Admin Page to aprove new users
-
-
+- Keep people from having duplicate usernames
