@@ -2,8 +2,8 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    name: String,
-    password: String,
+    name: {type: String, unique: true},
+    password: {type: String, required: true},
     approved: Boolean,
     _orders: [{ type: Schema.Types.ObjectId, ref: 'Drink', time: Date.now }],
     tab: Number,
