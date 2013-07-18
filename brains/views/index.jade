@@ -7,30 +7,14 @@ block content
     .small-9.columns
       .row
         h1 Shwastinator
-      for drink in drinks
-        .row
-          .button.order(name = '#{drink.name}') #{drink.name}
       .row
-        .button#motor1 Motor 1
-      .row
-        .button#motor2 Motor 2
-  
+        .small-12.columns
+          include showDrink
 
   script
-    var socket = io.connect('192.168.2.37:3000');
     // var socket = io.connect('localhost');
     $('.order').click(function(){
       console.log($(this).attr('name'));
       $.post('/orderDrink', {drinkOrdered: $(this).attr('name')})
       return false;
     })
-
-    $('#motor1').click(function(){
-      socket.emit('motor 1');
-      return false;
-    });
-
-    $('#motor2').click(function(){
-      socket.emit('motor 2');
-      return false;
-    });  

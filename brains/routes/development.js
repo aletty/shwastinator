@@ -58,12 +58,12 @@ exports.drinks = function(req, res){
         if (err) return ("error saving Orange Juice", err);
         console.log('Orange Juice saved');
     });
-    var randc = new models.Drink({_liquids: [{_liquid:rum, units:1}, {_liquid:coke, units:3}], name: "Rum and Coke", cost: 1.5, price: 3});
+    var randc = new models.Drink({_liquids: [{_liquid:rum, units:1}, {_liquid:coke, units:3}], name: "Rum and Coke", cost: 1.5, price: 3, image: "/images/randc.jpg"});
     randc.save(function(err){
         if (err) return ("error saving Rum and Coke", err);
         console.log('Rum and Coke saved');
     });
-    var voj = new models.Drink({_liquids: [{_liquid:vodka, units:1}, {_liquid:oj, units:3}], name: "Vodka Orange Juice", cost: 2, price: 3});
+    var voj = new models.Drink({_liquids: [{_liquid:vodka, units:1}, {_liquid:oj, units:3}], name: "Vodka Orange Juice", cost: 2, price: 3, image: 'images/screwdriver.jpg'});
     voj.save(function(err){
         if (err) return ("error saving Vodka Orange Juice", err);
         console.log('Vodka Orange Juice saved');
