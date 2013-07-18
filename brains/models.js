@@ -42,4 +42,3 @@ exports.Orders = Orders;
 exports.User = User;
 exports.Drink = Drink;
 exports.Liquid = Liquid;
-

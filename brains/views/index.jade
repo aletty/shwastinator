@@ -10,8 +10,6 @@ block content
       for drink in drinks
         .row
           .button.order(name = '#{drink.name}') #{drink.name}
-      
-
       .row
         .button#motor1 Motor 1
       .row
@@ -26,7 +24,6 @@ block content
       $.post('/orderDrink', {drinkOrdered: $(this).attr('name')})
       return false;
     })
-
 
     $('#motor1').click(function(){
       socket.emit('motor 1');

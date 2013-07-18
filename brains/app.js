@@ -17,9 +17,7 @@ var server = require('http').createServer(app)
   , path = require('path')
   , dev = require('./routes/development')
   , mongoose = require('mongoose')
-  , firmata = require('firmata');
 
-var board = require('./routes/board.js')
 // all environments
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -97,12 +95,8 @@ io.sockets.on('connection', function(socket) {
     socket.send('connected');
 
     socket.on('motor 1', function() {
-        board.boardMethods.setPin(11);
-        board.boardMethods.motorOn(11);
     });
 
     socket.on('motor 2', function(){
-        board.boardMethods.setPin(12);
-        board.boardMethods.motorOn(12);
     });
 });

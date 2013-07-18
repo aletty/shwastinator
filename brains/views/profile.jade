@@ -12,6 +12,5 @@ block content
           h1 #{user.name}
           h3 Current Tab $#{user.tab}
       .row
-        for order in user._orders
-          h5 order
-
+        for order in user._orders.reverse()
+          h5= order.name

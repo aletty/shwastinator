@@ -8,10 +8,9 @@ var bcrypt = require('bcrypt');
 
 exports.profile = function(req, res){
   console.log(req.session.user.name);
-	models.User.find({name:req.session.user.name}).populate('_orders', null, null, { sort: [['order', 'asc']] }).exec(function(err,user){
-		console.log(user);
-    res.render('profile', {title: user.name, user: user[0]});
-	});
+  models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
+    res.render('profile', {title: user.name, user: user});
+  });
 };
 
 exports.signin = function(req, res){
@@ -54,13 +53,8 @@ exports.login = function(req,res){
 
 exports.orderDrink = function(req, res){
   console.log(req.body.drinkOrdered);
-  models.Drink.find({name: req.body.drinkOrdered}).exec(function (err, drink){
-    models.User.update({name:req.session.user.name}, 
-      {$inc: {tab: drink[0].price}, $push: {_orders:drink}}, function (err, numberAffected, raw) {
-        if (err) return handleError(err);
-        console.log('The number of updated documents was %d', numberAffected);
-        console.log('The raw response from Mongo was ', raw);
-    });
-  })
+  models.Drink.findOne({name: req.body.drinkOrdered}, function (err, drink) {
+    models.User.update({name:req.session.user.name},
+      {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
+  });
 }
-
