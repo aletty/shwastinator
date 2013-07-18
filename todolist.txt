@@ -24,5 +24,13 @@ todo:
 - Admin page to change ballance of users...????
 - Only allowed to order drinks when you are approved
 
+add to package.json
+	mongoose
+	socket.io
+	bcrypt
+	
+
 Done
 - Admin Page to aprove new users
+
+
