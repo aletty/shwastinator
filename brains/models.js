@@ -19,7 +19,8 @@ var drinkSchema = new Schema({
     name: String,
     cost: Number,
     price: Number,
-    image: String
+    image: String,
+    imageSmall: String
 });
 
 var Drink = mongoose.model('Drink', drinkSchema);

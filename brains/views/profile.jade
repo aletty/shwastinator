@@ -7,10 +7,18 @@ block content
     .small-9.columns
       .row
         .small-4.columns
-          img(src='default_prof.jpg')
+          img(src='default_prof.jpg').th
         .small-8.columns
           h1 #{user.name}
           h3 Current Tab $#{user.tab}
+      br
       .row
         for order in user._orders.reverse()
-          h5= order.name
+          .panel
+            .row
+              .small-2.columns
+                img(src=order.imageSmall)
+              .small-8.columns
+                h5= order.name
+              .small-2.columns
+                h5 $#{order.price}
