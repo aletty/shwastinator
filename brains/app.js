@@ -88,6 +88,7 @@ app.post('/saveSetup', checkAdmin(), admin.saveSetup);
 app.get('/approveUsers', checkAdmin(), admin.approveUsers);
 app.post('/approved', admin.approved);
 app.post('/orderDrink', checkLoggedIn(), user.orderDrink);
+app.get('/allUsers', user.allUsers);
 
 server.listen(app.get('port'));
 

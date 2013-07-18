@@ -25,10 +25,11 @@ todo:
 - Only allowed to order drinks when you are approved
 
 add to package.json
-	mongoose
+	mongoosy
 	socket.io
 	bcrypt
-	
+	async
+
 
 Done
 - Admin Page to aprove new users

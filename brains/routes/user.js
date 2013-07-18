@@ -58,3 +58,10 @@ exports.orderDrink = function(req, res){
       {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
   });
 }
+
+exports.allUsers = function(req, res){
+  models.User.find({}).exec(function(err, users){
+    console.log(users);
+    res.send("YAY");
+  })
+}
