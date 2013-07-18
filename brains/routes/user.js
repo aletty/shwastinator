@@ -61,7 +61,15 @@ exports.orderDrink = function(req, res){
 
 exports.allUsers = function(req, res){
   models.User.find({}).exec(function(err, users){
-    console.log(users);
-    res.send("YAY");
+    res.render('allUsers', {title: 'All Users',  user: req.session.user, users:users});
   })
 }
+
+exports.friendProfile = function(req, res){
+  console.log("POSTED");
+  console.log(req.body.friend);
+  models.User.findOne({name: req.body.friend}).populate('_orders').exec(function (err, user){
+    console.log(user);
+    res.render('friendProfile', {title: user.name, user: req.session.user, otherUser: user});
+  });
+};
