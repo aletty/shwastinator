@@ -1,4 +1,5 @@
 todo:
+- Optimize pages for mobile
 - All time favorite Drinks
   - for the whole Bar
   - For Users
@@ -32,3 +33,4 @@ Done
 - Keep people from having duplicate usernames
 - Admin page to change balance of users
 - Order Drinks
+- Fixed mobile view
