@@ -71,3 +71,16 @@ exports.approved = function(req,res) {
         console.log(user);
     })
 }
+
+exports.logPayment = function(req, res) {
+    models.User.find().exec(function(err, users){
+        res.render('logPayment', {title: "Log Payment", user:req.session.user, users: users});
+    });
+}
+
+exports.credit = function(req, res) {
+    console.log(req.body);
+    models.User.update({name:req.body.userToCredit}, {$inc: {tab: -req.body.amount}}, function callback (err, numAffected) {
+  // numAffected is the number of updated documents
+    })
+}

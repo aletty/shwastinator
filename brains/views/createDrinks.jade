@@ -10,7 +10,7 @@ block content
         h3 Create a New Drink
       .small-6.columns
         a(href = '/liquid')
-          .button#addliquid Add Liquid
+          .button#saveDrink Save Drink
 
           
       form.custom
@@ -34,11 +34,22 @@ block content
           .small-2.columns
             h5 Units
           .small-7.columns
-        .row
-          .small-3.columns
-            select#liquids
-              for liquid in liquids
-                option #{liquid.name}
-          .small-1.columns
-            input#units(type='text', placeholder = '1');
-          .small-7.columns
+        .row#Ingredients
+          .row
+            .small-3.columns
+              select#liquids(name='ingredient1')
+                for liquid in liquids
+                  option #{liquid.name}
+            .small-1.columns
+              input#units(type='text', placeholder = '1');
+            .small-4.columns
+              .button.small.addLiquid +
+            .small-4.columns
+              &nbsp
+
+
+
+  script
+    $('.addLiquid').click(function(){
+      $('#Ingredients').append('<div class="row"><div class="small-3 columns"><select id="liquids" name="ingredient1"><option>Empty</option><option>Rum</option><option>Coke</option><option>Vodka</option><option>Orange Juice</option><option>Sprite</option></select></div><div class="small-1 columns"><input id="units" type="text" placeholder="1"></div><div class="small-6 columns">&nbsp</div></div></div>');
+    })
