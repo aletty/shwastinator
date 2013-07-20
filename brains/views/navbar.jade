@@ -1,24 +1,32 @@
 ul.side-nav.hide-for-small
   li 
-    a(href = '/profile') Hello #{user.name}
+    h5 Hello #{user.name}
   li.divider
-  li.active
+  li.navlink
       a(href='/') Home
-  li
+  li.navlink
     a(href='/profile') Profile
-  li
+  li.navlink
     a(href='/allUsers') All Users
   li.divider
   if (user.admin)
     li
       h5 Admin Pages
-    li
+    li.navlink
       a(href='/admin') Set Up Shwastinator
-    li
+    li.navlink
       a(href='/liquid') Add another liquid
-    li
+    li.navlink
       a(href='/createDrinks') Add a New Drink
-    li
+    li.navlink
       a(href='/approveUsers') Approve New Users
-    li
+    li.navlink
       a(href='/logPayment') Log Payment
+
+script
+  $(document).foundation();
+
+  $('.navlink').click(function(){
+    $('.navlink').removeClass("active");
+    $(this).addClass("active"); 
+  });
