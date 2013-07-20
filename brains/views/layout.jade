@@ -2,14 +2,16 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/foundation.css')
     link(rel='stylesheet', href='/stylesheets/normalize.css')
-
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
-    script(src='/javascripts/vendor/zepto.js')    
-    script(src="/javascripts/foundation.min.js")
+    script(src='/javascripts/vendor/custom.modernizr.js')
     script(src="/socket.io/socket.io.js")
+    script.
+      document.write('<script src=' + ('__proto__' in {} ? 'javascripts/vendor/zepto' : 'javascripts/vendor/jquery') + '.js><\/script>') 
+
 
   body
     block content
+    script(src="/javascripts/foundation.min.js")
+    script.
+      $(document).foundation();   
