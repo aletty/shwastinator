@@ -8,14 +8,29 @@ html
     
     link(rel='stylesheet', href='/stylesheets/foundation.css')
     link(rel='stylesheet', href='/stylesheets/normalize.css')
+    link(rel='stylesheet', href='/stylesheets/offcanvas.css')
     script(src='/javascripts/vendor/custom.modernizr.js')
     script(src="/socket.io/socket.io.js")
-    script.
-      document.write('<script src=' + ('__proto__' in {} ? 'javascripts/vendor/zepto' : 'javascripts/vendor/jquery') + '.js><\/script>') 
+    script(src="/javascripts/vendor/jquery.js")
 
-
-  body
-    block content
+  body.off-canvas
+    if (user)
+      include navbar
+    section(role="main")
+      if (user)
+        br
+        .row
+          .small-12.columns
+            a#sidebarButton.sidebar-button.show-for-small(href="#sidebar")
+              ul.inline-list
+                li
+                  img(src='images/menu.png')
+                li
+                  h4 Shwastinator
+      block content
+    section#sidebar(role="complementary").hide-for-large
+      include sideNavbar
     script(src="/javascripts/foundation.min.js")
+    script(src="/javascripts/jquery.offcanvas.js")
     script.
       $(document).foundation();   

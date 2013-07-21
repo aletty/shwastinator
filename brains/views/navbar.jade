@@ -1,27 +1,32 @@
-ul.side-nav.hide-for-small
-  li 
-    h5 Hello #{user.name}
-  li.divider
-  li.navlink
-      a(href='/') Home
-  li.navlink
-    a(href='/profile') Profile
-  li.navlink
-    a(href='/allUsers') All Users
-  li.divider
-  if (user.admin)
-    li
-      h5 Admin Pages
-    li.navlink
-      a(href='/admin') Set Up Shwastinator
-    li.navlink
-      a(href='/liquid') Add another liquid
-    li.navlink
-      a(href='/createDrinks') Add a New Drink
-    li.navlink
-      a(href='/approveUsers') Approve New Users
-    li.navlink
-      a(href='/logPayment') Log Payment
+nav.top-bar.hide-for-small
+  ul.title-area
+    li.name
+      h1
+        a(href='/') Shwastinator
+    li.toggle-topbar.menu-icon
+      a(href='#')
+        span
+  section.top-bar-section
+    ul.right
+      li
+        a(href='/profile') Profile
+      li
+        a(href='/allUsers') All Users
+      li.divider
+      if (user.admin)
+        li.has-dropdown
+          a(href='/admin') Admin
+          ul.dropdown 
+            li
+              a(href='/admin') Set Up
+            li
+              a(href='/liquid') Add liquid
+            li
+              a(href='/createDrinks') Add Drink
+            li
+              a(href='/approveUsers') Approve Users
+            li
+              a(href='/logPayment') Log Payment
 
 script.
   $('.navlink').click(function(){
