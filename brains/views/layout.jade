@@ -28,8 +28,9 @@ html
                 li
                   h4 Shwastinator
       block content
-    section#sidebar(role="complementary").hide-for-large
-      include sideNavbar
+    if (user)
+      section#sidebar(role="complementary").hide-for-large
+        include sideNavbar
     script(src="/javascripts/foundation.min.js")
     script(src="/javascripts/jquery.offcanvas.js")
     script.
