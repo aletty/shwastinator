@@ -7,15 +7,18 @@ block content
         .row
           h3 Add a New Liquid Type
         .row
-          .large-4.small-10.columns
-            h5 Liquid
-            input#liquid(type='text', placeholder='Liquid', name='name')
+          h5 Liquid
+          input#liquid(type='text', placeholder='Liquid', name='name')
         .row
-          h5
+          h5 Type
           input#drinkType(type='text', placeholder='Rum', name='drinkType')
+        .row
+          &nbsp
         .row
           input#alcoholic(type='checkbox', name = 'alcoholic')
           | Alcoholic?
+        .row
+          &nbsp
         .row
           .button#addliquid
             | Add to DB
