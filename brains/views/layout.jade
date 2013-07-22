@@ -5,10 +5,10 @@ html
     meta(name="viewport", content="width=device-width")
 
     title= title
-    
+
+    link(rel='stylesheet', href='/stylesheets/offcanvas.css')    
     link(rel='stylesheet', href='/stylesheets/foundation.css')
     link(rel='stylesheet', href='/stylesheets/normalize.css')
-    link(rel='stylesheet', href='/stylesheets/offcanvas.css')
     script(src='/javascripts/vendor/custom.modernizr.js')
     script(src="/socket.io/socket.io.js")
     script(src="/javascripts/vendor/jquery.js")
@@ -17,11 +17,7 @@ html
     if (user)
       include navbar
 
-    .row.show-for-medium-up
-      .small-12.columns
-        block content
-
-    section(role="main").hide-for-medium-up
+    section(role="main")
       if (user)
         include offcanvasMenu
       block content
@@ -29,6 +25,7 @@ html
     if (user)
       section#sidebar(role="complementary").hide-for-medium-up
         include sideNavbar
+
     script(src="/javascripts/foundation.min.js")
     script(src="/javascripts/jquery.offcanvas.js")
     script.
