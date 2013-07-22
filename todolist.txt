@@ -20,12 +20,8 @@ todo:
 - Navbar active links
 - Keep people from making blank passwords
 - Only allowed to order drinks when you are approved
-
-add to package.json
-	mongoose
-	socket.io
-	bcrypt
-	async
+- display only drinks that we have ingredients for
+- list ingredients in drinks on order page
 
 
 Done
@@ -34,3 +30,8 @@ Done
 - Admin page to change balance of users
 - Order Drinks
 - Fixed mobile view
+-add to package.json
+  mongoose
+  socket.io
+  bcrypt
+  async
