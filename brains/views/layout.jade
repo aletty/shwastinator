@@ -16,14 +16,16 @@ html
   body.off-canvas
     if (user)
       include navbar
-    div.show-for-medium-up
-      if (user)
+
+    .row.show-for-medium-up
+      .small-12.columns
         block content
 
     section(role="main").hide-for-medium-up
       if (user)
         include offcanvasMenu
       block content
+
     if (user)
       section#sidebar(role="complementary").hide-for-medium-up
         include sideNavbar
