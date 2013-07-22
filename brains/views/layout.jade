@@ -16,20 +16,16 @@ html
   body.off-canvas
     if (user)
       include navbar
-    section(role="main")
+    div.show-for-medium-up
       if (user)
-        br
-        .row
-          .small-12.columns
-            a#sidebarButton.sidebar-button.show-for-small(href="#sidebar")
-              ul.inline-list
-                li
-                  img(src='images/menu.png')
-                li
-                  h4 Shwastinator
+        block content
+
+    section(role="main").hide-for-medium-up
+      if (user)
+        include offcanvasMenu
       block content
     if (user)
-      section#sidebar(role="complementary").hide-for-large
+      section#sidebar(role="complementary").hide-for-medium-up
         include sideNavbar
     script(src="/javascripts/foundation.min.js")
     script(src="/javascripts/jquery.offcanvas.js")
