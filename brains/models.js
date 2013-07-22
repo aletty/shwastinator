@@ -26,7 +26,8 @@ var drinkSchema = new Schema({
 var Drink = mongoose.model('Drink', drinkSchema);
 
 var liquidSchema = new Schema({
-    name: String,
+    name: {type: String, unique: true},
+    type: String,
     alcoholic: Boolean,
     pump: {type: Number, default: 0} 
 });
