@@ -7,9 +7,10 @@ var bcrypt = require('bcrypt');
 
 
 exports.profile = function(req, res){
-	models.User.findOne({name:req.session.user.name}).exec(function(err,user){
-		res.render('profile', {title: user.name, user: user});
-	});
+  console.log(req.session.user.name);
+  models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
+    res.render('profile', {title: user.name, user: user});
+  });
 };
 
 exports.signin = function(req, res){
@@ -21,13 +22,10 @@ exports.signup = function(req, res){
 }
 
 exports.create = function(req, res){
-  console.log(req.body);
   console.log("username:", req.body.username);
-  console.log("password:", req.body.uncryptpass);
   
   var hashedPassword = bcrypt.hashSync(req.body.uncryptpass, 10);
-  var new_user = new models.User({name: req.body.username, password: hashedPassword});
-  console.log('FLAG!!!');
+  var new_user = new models.User({name: req.body.username, password: hashedPassword, approved: false});
   new_user.save(function(err){
     if (err) return console.log("error while saving new user" + req.body.username, err);
       req.session.user = new_user;
@@ -52,3 +50,26 @@ exports.login = function(req,res){
     }
   });
 }
+
+exports.orderDrink = function(req, res){
+  console.log(req.body.drinkOrdered);
+  models.Drink.findOne({name: req.body.drinkOrdered}, function (err, drink) {
+    models.User.update({name:req.session.user.name},
+      {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
+  });
+}
+
+exports.allUsers = function(req, res){
+  models.User.find({}).exec(function(err, users){
+    res.render('allUsers', {title: 'All Users',  user: req.session.user, users:users});
+  })
+}
+
+exports.friendProfile = function(req, res){
+  console.log("POSTED");
+  console.log(req.body.friend);
+  models.User.findOne({name: req.body.friend}).populate('_orders').exec(function (err, user){
+    console.log(user);
+    res.render('friendProfile', {title: user.name, user: req.session.user, otherUser: user});
+  });
+};

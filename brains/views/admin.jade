@@ -2,10 +2,7 @@ extends layout
 
 block content
   .row
-    .small-3.columns
-      include navbar.jade
-      
-    .small-9.columns
+    .small-12.columns
       .row
         .large-3.small-6.columns
           h3 Set Pumps
@@ -70,6 +67,5 @@ block content
     $(document).foundation();
 
     $('#save').click(function() {
-      console.log( $("#pump1").val());
       $.post('/saveSetup', $('#setup').serialize());
     })

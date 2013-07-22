@@ -58,34 +58,15 @@ exports.drinks = function(req, res){
         if (err) return ("error saving Orange Juice", err);
         console.log('Orange Juice saved');
     });
-    var randc = new models.Drink({_liquids: [{_liquid:rum, units:1}, {_liquid:coke, units:3}], name: "Rum and Coke", cost: 1.5, price: 3});
+    var randc = new models.Drink({_liquids: [{_liquid:rum, units:1}, {_liquid:coke, units:3}], name: "Rum and Coke", cost: 1.5, price: 3, image: "/images/randc.jpg", imageSmall: '/images/randc-small.jpg'});
     randc.save(function(err){
         if (err) return ("error saving Rum and Coke", err);
         console.log('Rum and Coke saved');
     });
-    var voj = new models.Drink({_liquids: [{_liquid:vodka, units:1}, {_liquid:oj, units:3}], name: "Vodka Orange Juice", cost: 2, price: 3});
+    var voj = new models.Drink({_liquids: [{_liquid:vodka, units:1}, {_liquid:oj, units:3}], name: "Screwdriver", cost: 2, price: 3, image: 'images/screwdriver.jpg', imageSmall: '/images/screwdriver-small.jpg'});
     voj.save(function(err){
         if (err) return ("error saving Vodka Orange Juice", err);
         console.log('Vodka Orange Juice saved');
-    });
-    var shwaste = new models.Shwastinator({
-        pump1: "Empty",
-        pump2: "Empty",
-        pump3: "Empty",
-        pump4: "Empty",
-        pump5: "Empty",
-        pump6: "Empty",
-        pump7: "Empty",
-        pump8: "Empty",
-        pump9: "Empty",
-        pump10: "Empty",
-        pump11: "Empty",
-        pump12: "Empty",
-        pump13: "Empty",
-    });
-    shwaste.save(function(err){
-        if (err) return ("error saving Shwastinator", err);
-        console.log('Shwastinator saved');
     });
 
     res.send("Liquids and drinks populated");

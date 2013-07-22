@@ -2,8 +2,8 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    name: String,
-    password: String,
+    name: {type: String, unique: true},
+    password: {type: String, required: true},
     approved: Boolean,
     _orders: [{ type: Schema.Types.ObjectId, ref: 'Drink', time: Date.now }],
     tab: Number,
@@ -19,38 +19,27 @@ var drinkSchema = new Schema({
     name: String,
     cost: Number,
     price: Number,
-    image: String
+    image: String,
+    imageSmall: String
 });
 
 var Drink = mongoose.model('Drink', drinkSchema);
 
 var liquidSchema = new Schema({
     name: String,
-    alcoholic: Boolean 
+    alcoholic: Boolean,
+    pump: {type: Number, default: 0} 
 });
 
 var Liquid = mongoose.model('Liquid', liquidSchema);
 
-var shwasteSchema = new Schema({
-    pump1: String,
-    pump2: String,
-    pump3: String,
-    pump4: String,
-    pump5: String,
-    pump6: String,
-    pump7: String,
-    pump8: String,
-    pump9: String,
-    pump10: String,
-    pump11: String,
-    pump12: String,
-    pump13: String,
+var orderschema = new Schema({
+    orders: [{ type: Schema.Types.ObjectId, ref: 'Drink', time: Date.now }]
 });
 
-var Shwastinator = mongoose.model('Shwastinator', shwasteSchema);
+var Orders = mongoose.model('Orders', orderschema);
 
-exports.Shwastinator = Shwastinator;
+exports.Orders = Orders;
 exports.User = User;
 exports.Drink = Drink;
 exports.Liquid = Liquid;
-

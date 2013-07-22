@@ -17,9 +17,7 @@ var server = require('http').createServer(app)
   , path = require('path')
   , dev = require('./routes/development')
   , mongoose = require('mongoose')
-  , firmata = require('firmata');
 
-var board = require('./routes/board.js')
 // all environments
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -31,8 +29,8 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(express.static(__dirname + "/public"));
   app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
 
   var uristring = 
     process.env.MONGODB_URI ||
@@ -81,12 +79,19 @@ app.get('/profile',  checkLoggedIn(), user.profile);
 app.get('/admin', checkAdmin(), admin.home);
 app.post('/newUser', user.create);
 app.get('/liquid', checkAdmin(), admin.liquid);
-app.post('/addLiquid', admin.addLiquid);
+app.post('/addLiquid', checkAdmin(), admin.addLiquid);
 app.get('/createUsers', dev.createUsers);
 app.get('/drinks', dev.drinks);
 app.post('/verify', user.login);
-app.get('/createDrinks', admin.createDrinks);
-app.post('/saveSetup', admin.saveSetup);
+app.get('/createDrinks', checkAdmin(), admin.createDrinks);
+app.post('/saveSetup', checkAdmin(), admin.saveSetup);
+app.get('/approveUsers', checkAdmin(), admin.approveUsers);
+app.post('/approved', admin.approved);
+app.post('/orderDrink', checkLoggedIn(), user.orderDrink);
+app.get('/allUsers', checkLoggedIn(), user.allUsers);
+app.get('/friendProfile', checkLoggedIn(), user.friendProfile);
+app.get('/logPayment', checkAdmin(), admin.logPayment);
+app.post('/credit', admin.credit);
 
 server.listen(app.get('port'));
 
@@ -94,12 +99,8 @@ io.sockets.on('connection', function(socket) {
     socket.send('connected');
 
     socket.on('motor 1', function() {
-        board.boardMethods.setPin(11);
-        board.boardMethods.motorOn(11);
     });
 
     socket.on('motor 2', function(){
-        board.boardMethods.setPin(12);
-        board.boardMethods.motorOn(12);
     });
 });

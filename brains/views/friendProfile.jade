@@ -2,18 +2,20 @@ extends layout
 
 block content
   .row 
-    .small-12.columns
+    .small-3.columns
+      include navbar
+    .small-9.columns
       .row
         .small-4.columns
           img(src='default_prof.jpg').th
         .small-8.columns
-          h1 #{user.name}
-          h3 Current Tab $#{user.tab}
+          h1 #{otherUser.name}
+          h3 Current Tab $#{otherUser.tab}
       br
       .row
         .small-6.columns
           h3 Recent Drinks
-          for order in user._orders.reverse()
+          for order in otherUser._orders.reverse()
             .panel
               .row
                 .small-2.columns
@@ -32,7 +34,7 @@ block content
                 label(for='x', onclick='') Tonight
                 input#x1(name='switch-x', type='radio')
                 label(for='x1', onclick='') All Time
-          for order in user._orders
+          for order in otherUser._orders
             .panel
               .row
                 .small-2.columns

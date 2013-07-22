@@ -2,32 +2,13 @@ extends layout
 
 block content
   .row
-    .small-3.columns
-      include navbar
-    .small-9.columns
-      .row
-        h1 Shwastinator
-      for drink in drinks
-        .row
-          .button #{drink.name}
-      
+    .small-12.columns
+      include showDrink
 
-      .row
-        .button#motor1 Motor 1
-      .row
-        .button#motor2 Motor 2
-  
-
-  script
-    var socket = io.connect('192.168.2.37:3000');
+  script.
     // var socket = io.connect('localhost');
-
-    $('#motor1').click(function(){
-      socket.emit('motor 1');
+    $('.order').click(function(){
+      console.log($(this).attr('data-caption'));
+      $.post('/orderDrink', {drinkOrdered: $(this).attr('data-caption')})
       return false;
-    });
-
-    $('#motor2').click(function(){
-      socket.emit('motor 2');
-      return false;
-    });  
+    })

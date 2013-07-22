@@ -1,15 +1,35 @@
 doctype 5
 html
   head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    
     link(rel='stylesheet', href='/stylesheets/foundation.css')
     link(rel='stylesheet', href='/stylesheets/normalize.css')
-
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
-    script(src='/javascripts/vendor/zepto.js')    
-    script(src="/javascripts/foundation.min.js")
+    link(rel='stylesheet', href='/stylesheets/offcanvas.css')
+    script(src='/javascripts/vendor/custom.modernizr.js')
     script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/vendor/jquery.js")
 
-  body
-    block content
+  body.off-canvas
+    if (user)
+      include navbar
+
+    .row.show-for-medium-up
+      .small-12.columns
+        block content
+
+    section(role="main").hide-for-medium-up
+      if (user)
+        include offcanvasMenu
+      block content
+
+    if (user)
+      section#sidebar(role="complementary").hide-for-medium-up
+        include sideNavbar
+    script(src="/javascripts/foundation.min.js")
+    script(src="/javascripts/jquery.offcanvas.js")
+    script.
+      $(document).foundation();   

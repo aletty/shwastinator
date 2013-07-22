@@ -13,8 +13,9 @@ var server = require('http').createServer(app)
   , http = require('http')
   , path = require('path')
   , firmata = require('firmata')
-  , board = require('./routes/board.js')
-  , temporal = require('temporal');
+=======
+  , board = require('./routes/board.js');
+>>>>>>> c6cccd96df7563d66932699f3b6db6b142d7c77e
 
 // all environments
 app.configure(function(){
@@ -29,20 +30,6 @@ app.configure(function(){
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-
-//   var uristring = 
-//     process.env.MONGODB_URI ||
-//     process.env.MONGOLAB_URI ||
-//     'mongodb://localhost/shwastinator';
-//   var mongoOptions = { db: { safe: true }};
-
-//   mongoose.connect(uristring, mongoOptions, function (err, res) {
-//     if (err) {
-//       console.log('ERROR connecting to: ' + uristring + '. ' + err);
-//     } else {
-//       console.log('Succeeded connecting to:' + uristring + '.');
-//     }
-//   });
 });
 
 // development only
@@ -54,45 +41,17 @@ app.get('/', routes.index);
 
 server.listen(app.get('port'));
 
-var socket = io.connect('192.168.2.36', {port:4000});
+var socket = io.connect('192.168.1.37', {port:4000});
 
 socket.on('connect', function() {
   console.log('connected on pi (yummy)');
 });
 
-socket.on('recipe 1', function(data) {
-  console.log(data);
-  var recipe = data.drink
-  for (var i=0;i<recipe.length;i++) {
-    board.boardMethods.setPin(recipe[i][0]);
-    board.boardMethods.motorOn(recipe[i][0], recipe[i][1]*1000);    
-  temporal.delay(recipe[i][1]*1000, function(){}); 
-  }
+=======
+socket.on('drink', function(data) {
+  var recipe = data.drink;
+  board.boardMethods.setPins();
+  board.pumpStatus.update(recipe);
+  board.boardMethods.processPumps();
+>>>>>>> c6cccd96df7563d66932699f3b6db6b142d7c77e
 });
-
-socket.on('led 2', function() {
-  console.log('led 2');
-});
-// socket.on('led 1', function() {
-//     console.log('led 1');
-//     board.boardMethods.setPin(1);
-//     board.boardMethods.motorOn(1);
-// });
-
-// socket.on('led 2', function(){
-//     console.log('led 2');
-//     board.boardMethods.setPin(2);
-//     board.boardMethods.motorOn(2);
-// });
-
-// socket.on('led 3', function(){
-//     console.log('led 3');
-//     board.boardMethods.setPin(3);
-//     board.boardMethods.motorOn(3);
-// });
-
-// socket.on('led 4', function(){
-//     console.log('led 4');
-//     board.boardMethods.setPin(4);
-//     board.boardMethods.motorOn(4);
-// });    
