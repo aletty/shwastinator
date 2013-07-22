@@ -57,6 +57,10 @@ exports.orderDrink = function(req, res){
     models.User.update({name:req.session.user.name},
       {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
   });
+  models.Drink.findOne({name: req.body.drinkOrdered}, function (err, drink) {
+    models.User.update({name:"Shwasted"},
+      {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
+  });
 }
 
 exports.allUsers = function(req, res){
