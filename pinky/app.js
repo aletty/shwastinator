@@ -13,9 +13,7 @@ var server = require('http').createServer(app)
   , http = require('http')
   , path = require('path')
   , firmata = require('firmata')
-=======
   , board = require('./routes/board.js');
->>>>>>> c6cccd96df7563d66932699f3b6db6b142d7c77e
 
 // all environments
 app.configure(function(){
@@ -47,11 +45,9 @@ socket.on('connect', function() {
   console.log('connected on pi (yummy)');
 });
 
-=======
 socket.on('drink', function(data) {
   var recipe = data.drink;
   board.boardMethods.setPins();
   board.pumpStatus.update(recipe);
   board.boardMethods.processPumps();
->>>>>>> c6cccd96df7563d66932699f3b6db6b142d7c77e
 });
