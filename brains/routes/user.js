@@ -10,11 +10,15 @@ exports.profile = function(req, res){
   console.log(req.session.user.name);
   models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
     var sortedOrders = topOrders(user._orders);
-    models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
-      console.log(sortedOrders);
-      console.log(topDrinks);
-      res.render('profile', {title: user.name, user: user, topDrinks:topDrinks});
-    })
+    if(sortedOrders.length>=3){
+      models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
+        console.log(sortedOrders);
+        console.log(topDrinks);
+        res.render('profile', {title: user.name, user: user, topDrinks:topDrinks});
+      });
+    } else{
+      res.render('profile', {title: user.name, user: user});
+    }
       
   });
 };

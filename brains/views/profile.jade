@@ -21,15 +21,18 @@ block content
                 label(for='x', onclick='') Tonight
                 input#x1(name='switch-x', type='radio')
                 label(for='x1', onclick='') All Time
-          for drink in topDrinks.reverse()
-            .panel
-              .row
-                .small-3.columns
-                  img(src=drink.imageSmall)
-                .small-7.columns
-                  h5= drink.name
-                .small-2.columns
-                  h5 $#{drink.price}
+          if (topDrinks)
+            for drink in topDrinks.reverse()
+              .panel
+                .row
+                  .small-3.columns
+                    img(src=drink.imageSmall)
+                  .small-7.columns
+                    h5= drink.name
+                  .small-2.columns
+                    h5 $#{drink.price}
+          if (!topDrinks)
+            h3 Dude you need to Drink more :)
         .large-6.small-12.pull-6.columns
           h3 Recent Drinks
           for order in user._orders.reverse()

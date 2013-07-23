@@ -8,16 +8,16 @@ exports.createUsers = function(req, res){
     var hashedn = bcrypt.hashSync("notad", 10);
     var hashedu = bcrypt.hashSync("unapp", 10);
     var hashedsh = bcrypt.hashSync("shwasted", 10);
-    var shwasted = new models.User({name: "Shwasted", password: hashedsh, approved: true, tab: 0, admin: false});
+    var shwasted = new models.User({name: "Shwasted", password: hashedsh, approved: true, tab: 0, admin: false, _orders:[]});
     shwasted.save(function(err){
         if (err) return ("error saving Shwasted", err);
         console.log('Shwasteds saved');
     });
 
-    var keely = new models.User({name: "Keely", password: hashedk, approved: true, tab: 0, admin: true});
-    var arjun = new models.User({name: "Arjun", password: hasheda, approved: true, tab: 0, admin: true});
-    var notad = new models.User({name: "Notad", password: hashedn, approved: true, tab: 0, admin: false});
-    var unapp = new models.User({name: "Unapp", password: hashedu, approved: false, tab: 0, admin: false});
+    var keely = new models.User({name: "Keely", password: hashedk, approved: true, tab: 0, admin: true, _orders:[]});
+    var arjun = new models.User({name: "Arjun", password: hasheda, approved: true, tab: 0, admin: true, _orders:[]});
+    var notad = new models.User({name: "Notad", password: hashedn, approved: true, tab: 0, admin: false, _orders:[]});
+    var unapp = new models.User({name: "Unapp", password: hashedu, approved: false, tab: 0, admin: false, _orders:[]});
     keely.save(function(err){
         if (err) return ("error saving Keely", err);
         console.log('Keely saved');
