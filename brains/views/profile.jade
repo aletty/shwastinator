@@ -11,18 +11,7 @@ block content
           h3 Current Tab $#{user.tab}
       br
       .row
-        .small-6.columns
-          h3 Recent Drinks
-          for order in user._orders.reverse()
-            .panel
-              .row
-                .small-3.columns
-                  img(src=order.imageSmall)
-                .small-7.columns
-                  h5= order.name
-                .small-2.columns
-                  h5 $#{order.price}
-        .small-6.columns
+        .large-6.small-12.push-6.columns
           .row
             .small-6.columns
               h3 Top Drinks
@@ -41,3 +30,14 @@ block content
                   h5= drink.name
                 .small-2.columns
                   h5 $#{drink.price}
+        .large-6.small-12.pull-6.columns
+          h3 Recent Drinks
+          for order in user._orders.reverse()
+            .panel
+              .row
+                .small-3.columns
+                  img(src=order.imageSmall)
+                .small-7.columns
+                  h5= order.name
+                .small-2.columns
+                  h5 $#{order.price}
