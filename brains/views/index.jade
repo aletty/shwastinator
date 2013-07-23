@@ -7,11 +7,13 @@ block content
         for drink in topDrinks.reverse()
           li
             .row
+              .small-2.columns
+                br
               .small-4.columns
                 img(src=drink.image)
               .small-4.columns
                 h1 #{drink.name}
-              .small-4.columns
+              .small-2.columns
                 &nbsp
             .orbit-caption #{drink.name} $#{drink.price}
   .row
