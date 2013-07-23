@@ -2,10 +2,7 @@ extends layout
 
 block content
   .row
-    .small-3.columns
-      include navbar
-      
-    .small-9.columns
+    .small-12.columns
       .small-6.columns
         h3 Create a New Drink
       .small-6.columns
@@ -13,7 +10,7 @@ block content
           .button#saveDrink Save Drink
 
           
-      form.custom
+      form
         .row
           .small-6.columns
             h5 Drink Name
@@ -37,19 +34,27 @@ block content
         .row#Ingredients
           .row
             .small-3.columns
-              select#liquids(name='ingredient1')
+              select#ingredient1
                 for liquid in liquids
                   option #{liquid.name}
             .small-1.columns
-              input#units(type='text', placeholder = '1');
+              input#units1(type='text', placeholder = '1');
             .small-4.columns
               .button.small.addLiquid +
             .small-4.columns
-              &nbsp
+              .button.small.dispIngred disp
+
+        .row#currentIngredients
 
 
 
-  script
+  script.
     $('.addLiquid').click(function(){
-      $('#Ingredients').append('<div class="row"><div class="small-3 columns"><select id="liquids" name="ingredient1"><option>Empty</option><option>Rum</option><option>Coke</option><option>Vodka</option><option>Orange Juice</option><option>Sprite</option></select></div><div class="small-1 columns"><input id="units" type="text" placeholder="1"></div><div class="small-6 columns">&nbsp</div></div></div>');
+      $('#currentIngredients').append('<div class="row"><div class="small-6 columns"><div data-alert class="alert-box secondary ingreds" name="'+ $('#ingredient1').val() +'">'+ $('#ingredient1').val() +' (' + $('#units1').val() + ') <a href="#" class="close">&times;</a></div></div></div>');
+    });
+
+    $('.dispIngred').click(function(){
+      $('.ingreds').each(function(){
+        console.log($(this).attr('name'));
+      });
     })
