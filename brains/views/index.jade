@@ -5,18 +5,13 @@ block content
     .row
       .small-12.columns
         .slideshow-wrapper
-          ul(data-orbit='data-orbit')
+          .preloader
+          ul(data-orbit='data-orbit')#featured1
             for drink in topDrinks.reverse()
               li
                 .row
-                  .small-2.columns
-                    br
-                  .small-4.columns
+                  .small-12.columns#wrap-img
                     img(src=drink.image)
-                  .small-4.columns
-                    h1 #{drink.name}
-                  .small-2.columns
-                    &nbsp
                 .orbit-caption #{drink.name} $#{drink.price}
   .row
     .small-12.columns
