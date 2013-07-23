@@ -9,6 +9,7 @@ var bcrypt = require('bcrypt');
 exports.profile = function(req, res){
   console.log(req.session.user.name);
   models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
+    topOrders(user._orders);
     res.render('profile', {title: user.name, user: user});
   });
 };
@@ -57,6 +58,10 @@ exports.orderDrink = function(req, res){
     models.User.update({name:req.session.user.name},
       {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
   });
+  models.Drink.findOne({name: req.body.drinkOrdered}, function (err, drink) {
+    models.User.update({name:"Shwasted"},
+      {$inc: {tab: drink.price}, $push: {_orders:drink}}).exec();
+  });
 }
 
 exports.allUsers = function(req, res){
@@ -70,6 +75,22 @@ exports.friendProfile = function(req, res){
   console.log(req.body.friend);
   models.User.findOne({name: req.body.friend}).populate('_orders').exec(function (err, user){
     console.log(user);
+    topOrders(user._orders)
     res.render('friendProfile', {title: user.name, user: req.session.user, otherUser: user});
   });
 };
+
+
+function topOrders(_orders) {
+    //takes name of liquid and pump number
+  console.log(_orders.length);
+  var hist = {};
+  for (var i=0; i<_orders.length; i++){
+    if(!hist[_orders[i].name]){
+      hist[_orders[i].name]=1;
+    }
+    else
+      hist[_orders[i].name]= hist[_orders[i].name]+1;
+  }
+  console.log("hist is!!",hist);
+}
