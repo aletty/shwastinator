@@ -11,6 +11,7 @@ exports.index = function(req, res){
     console.log(sortedOrders);
     models.Drink.find().exec(function (err, drinks){
       models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
+        console.log(topDrinks);
         res.render('index', { title: 'Express', user:req.session.user, drinks:drinks, topDrinks:topDrinks});
       })
     })
