@@ -22,6 +22,8 @@ todo:
 - Only allowed to order drinks when you are approved
 - display only drinks that we have ingredients for
 - list ingredients in drinks on order page
+- photoshop images to correct ratio
+
 
 
 Done
