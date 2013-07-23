@@ -9,8 +9,13 @@ var bcrypt = require('bcrypt');
 exports.profile = function(req, res){
   console.log(req.session.user.name);
   models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
-    topOrders(user._orders);
-    res.render('profile', {title: user.name, user: user});
+    var sortedOrders = topOrders(user._orders);
+    models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
+      console.log(sortedOrders);
+      console.log(topDrinks);
+      res.render('profile', {title: user.name, user: user, topDrinks:topDrinks});
+    })
+      
   });
 };
 
@@ -21,6 +26,7 @@ exports.signin = function(req, res){
 exports.signup = function(req, res){
     res.render('signup', {title: 'Shwastinator'});
 }
+
 
 exports.create = function(req, res){
   console.log("username:", req.body.username);
@@ -83,7 +89,6 @@ exports.friendProfile = function(req, res){
 
 function topOrders(_orders) {
     //takes name of liquid and pump number
-  console.log(_orders.length);
   var hist = {};
   for (var i=0; i<_orders.length; i++){
     if(!hist[_orders[i].name]){
@@ -92,5 +97,9 @@ function topOrders(_orders) {
     else
       hist[_orders[i].name]= hist[_orders[i].name]+1;
   }
-  console.log("hist is!!",hist);
+  var sortable = [];
+  for (var drink in hist)
+    sortable.push([drink, hist[drink]])
+  sortable.sort(function(a, b) {return b[1] - a[1]})
+  return sortable;
 }

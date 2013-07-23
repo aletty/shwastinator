@@ -17,7 +17,7 @@ block content
             .panel
               .row
                 .small-2.columns
-                  img(src=order.imageSmall)
+                  img(src=order.imageSmall, height = "70")
                 .small-8.columns
                   h5= order.name
                 .small-2.columns
@@ -32,12 +32,12 @@ block content
                 label(for='x', onclick='') Tonight
                 input#x1(name='switch-x', type='radio')
                 label(for='x1', onclick='') All Time
-          for order in user._orders
+          for drink in topDrinks.reverse()
             .panel
               .row
                 .small-2.columns
-                  img(src=order.imageSmall)
+                  img(src=drink.imageSmall)
                 .small-8.columns
-                  h5= order.name
+                  h5= drink.name
                 .small-2.columns
-                  h5 $#{order.price}
+                  h5 $#{drink.price}
