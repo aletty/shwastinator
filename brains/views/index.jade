@@ -1,21 +1,22 @@
 extends layout
 
 block content
-  .row
-    .small-12.columns
-      ul(data-orbit='data-orbit')
-        for drink in topDrinks.reverse()
-          li
-            .row
-              .small-2.columns
-                br
-              .small-4.columns
-                img(src=drink.image)
-              .small-4.columns
-                h1 #{drink.name}
-              .small-2.columns
-                &nbsp
-            .orbit-caption #{drink.name} $#{drink.price}
+  if (topDrinks)
+    .row
+      .small-12.columns
+        ul(data-orbit='data-orbit')
+          for drink in topDrinks.reverse()
+            li
+              .row
+                .small-2.columns
+                  br
+                .small-4.columns
+                  img(src=drink.image)
+                .small-4.columns
+                  h1 #{drink.name}
+                .small-2.columns
+                  &nbsp
+              .orbit-caption #{drink.name} $#{drink.price}
   .row
     .small-12.columns
       include showDrink
