@@ -22,8 +22,9 @@ html
         for success in successes
           .small-12.columns
             div(data-alert='data-alert').alert-box.success
-            a(href='#').close
-              &times;
+              p #{success}
+              a(href='#').close
+                &times;
     if (warnings)
       .row
         for warning in warnings
