@@ -76,7 +76,7 @@ exports.orderDrink = function(req, res){
 
 exports.allUsers = function(req, res){
   models.User.find({}).exec(function(err, users){
-    res.render('allUsers', {title: 'All Users',  user: req.session.user, users:users});
+    res.render('allUsers', {title: 'All Users',  me: req.session.user, users:users});
   })
 }
 
@@ -107,4 +107,8 @@ function topOrders(_orders) {
     sortable.push([drink, hist[drink]])
   sortable.sort(function(a, b) {return b[1] - a[1]})
   return sortable;
+}
+
+exports.addGuest = function(req, res){
+  res.render('addGuest', {title:'Add Guest', user:req.session.user});
 }

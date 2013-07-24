@@ -7,6 +7,10 @@ todo:
   - for the Whole Bar
   - for users
 
+- ALERTS - part of layout!!
+
+- edit drinks
+- view all users tabs  
 - Allow approved Users to add guests
     ??? should guests be automatically approved????
     
@@ -21,7 +25,7 @@ todo:
 - Keep people from making blank passwords
 - Only allowed to order drinks when you are approved
 - display only drinks that we have ingredients for
-- list ingredients in drinks on order page
+- list ingredients in drinks on order page.....??????
 - photoshop images to correct ratio
 
 

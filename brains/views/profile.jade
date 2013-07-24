@@ -6,9 +6,11 @@ block content
       .row
         .small-4.columns
           img(src='default_prof.jpg').th
-        .small-8.columns
+        .small-5.columns
           h1 #{user.name}
           h3 Current Tab $#{user.tab}
+        .small-3.columns
+          .button.large#addGuest Add Guest
       br
       .row
         .large-6.small-12.push-6.columns
@@ -47,3 +49,10 @@ block content
                     h5 $#{order.price}
           if (!user._orders)
             h3 Dude you need to drink more :)
+
+
+  script.
+    $('#addGuest').click(function(){
+      console.log('addGuest');
+      $.get('/addGuest');
+    })

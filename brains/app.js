@@ -93,6 +93,7 @@ app.get('/allUsers', checkLoggedIn(), user.allUsers);
 app.get('/friendProfile', checkLoggedIn(), user.friendProfile);
 app.get('/logPayment', checkAdmin(), admin.logPayment);
 app.post('/credit', admin.credit);
+app.get('/addGuest', checkLoggedIn(), user.addGuest);
 
 server.listen(app.get('port'));
 
