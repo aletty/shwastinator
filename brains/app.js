@@ -90,7 +90,7 @@ app.get('/approveUsers', checkAdmin(), admin.approveUsers);
 app.post('/approved', admin.approved);
 app.post('/orderDrink', checkLoggedIn(), user.orderDrink);
 app.get('/allUsers', checkLoggedIn(), user.allUsers);
-app.get('/friendProfile', checkLoggedIn(), user.friendProfile);
+app.get('/friendProfile/:friend', checkLoggedIn(), user.friendProfile);
 app.get('/logPayment', checkAdmin(), admin.logPayment);
 app.post('/credit', admin.credit);
 app.get('/addGuest', checkLoggedIn(), user.addGuest);

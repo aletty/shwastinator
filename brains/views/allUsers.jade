@@ -7,24 +7,15 @@ block content
         h2 All Users
       for user in users
         .row.panel.eachUser(name= '#{user.name}')
-          .small-2.columns
-            img(src='default_prof.jpg', width='60', height='60')
-          if (me.admin)
-            .small-8.columns
-              h5 #{user.name}
+          a(href='/friendProfile/#{user.name}')
             .small-2.columns
-              h5 $#{user.tab}
-          else
+              img(src='default_prof.jpg', width='60', height='60')
             .small-10.columns
-              h5 #{user.name}              
+              h5 #{user.name}
 
 
   script.
     $('.eachUser').click(function(){
       console.log($(this).attr('name'));
-      var friend = $(this).attr('name');
-      var data = { friend: friend };
-      console.log(jQuery.isPlainObject( data ));
-      $.get('/friendProfile', data);
-      return false;
-      })
+      window.location = 'friendProfile/'+$(this).attr('name');
+    })

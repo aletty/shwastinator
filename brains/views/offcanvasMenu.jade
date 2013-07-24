@@ -4,6 +4,9 @@ br
     a#sidebarButton.sidebar-button.show-for-small(href="#sidebar")
       ul.inline-list
         li
-          img(src='images/menu.png')
+          if (friend)
+            img(src='../images/menu.png')
+          else
+            img(src='/images/menu.png')
         li
           h4 Shwastinator

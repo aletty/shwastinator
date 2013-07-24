@@ -81,13 +81,9 @@ exports.allUsers = function(req, res){
 }
 
 exports.friendProfile = function(req, res){
-  console.log("POSTED");
-  console.log(req.body);
-  models.User.findOne({name: req.body.friend}).populate('_orders').exec(function (err, user){
-    console.log(user);
+  models.User.findOne({name: req.params.friend}).populate('_orders').exec(function (err, user){
     var sortedOrders = topOrders(user._orders)
-    console.log(sortedOrders);
-    res.render('friendProfile', {title: user.name, user: req.session.user, otherUser: user});
+    res.render('friendProfile', {title: user.name, user: req.session.user, friend: user});
   });
 };
 
