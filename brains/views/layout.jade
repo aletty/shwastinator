@@ -17,9 +17,24 @@ html
   body.off-canvas
     if (me)
       include navbar
+    if (successes)
+      .row
+        for success in successes
+          .small-12.columns
+            div(data-alert='data-alert').alert-box.success
+            a(href='#').close
+              &times;
+    if (warnings)
+      .row
+        for warning in warnings
+          .small-12.columns
+            div(data-alert='data-alert').alert-box.alert
+              h5 #{warning}
+              a(href='#').close
+                &times;
     if (messages)
-      for message in messages
-        .row
+      .row
+        for message in messages
           .small-12.columns
             div(data-alert='data-alert').alert-box
               h5 #{message}
