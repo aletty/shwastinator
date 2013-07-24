@@ -94,6 +94,7 @@ app.get('/friendProfile/:friend', checkLoggedIn(), user.friendProfile);
 app.get('/logPayment', checkAdmin(), admin.logPayment);
 app.post('/credit', admin.credit);
 app.get('/addGuest', checkLoggedIn(), user.addGuest);
+app.post('/newGuest', checkLoggedIn(), user.newGuest);
 
 server.listen(app.get('port'));
 
