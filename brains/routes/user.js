@@ -12,24 +12,24 @@ exports.profile = function(req, res){
     if(sortedOrders.length>=3){
       models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
         console.log(sortedOrders);
-        res.render('profile', {title: me.name, me: me, topDrinks:topDrinks});
+        res.render('profile', {title: me.name, me: me, topDrinks:topDrinks, messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
       });
     } else{
-      res.render('profile', {title: me.name, me: me});
+      res.render('profile', {title: me.name, me: me, messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
     }
       
   });
 };
 
 exports.signin = function(req, res){
-    res.render('signin', {title: 'Shwastinator', messages: req.flash('info')});
+    res.render('signin', {title: 'Shwastinator', messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
 }
 
 exports.signup = function(req, res){
-    res.render('signup', {title: 'Shwastinator'});
+    res.render('signup', {title: 'Shwastinator', messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
 }
 
-exports.create = function(req, res){  
+exports.create = function(req, res){   
   var hashedPassword = bcrypt.hashSync(req.body.uncryptpass, 10);
   var new_user = new models.User({name: req.body.username, password: hashedPassword, approved: false, tab:0, admin:false, _orders:[], isguest:false});
   new_user.save(function(err){
@@ -53,7 +53,7 @@ exports.login = function(req,res){
         req.session.user = user[0];
         res.send({redirect: '/'});
       } else {
-        req.flash('info', 'Username/password incorrect');
+        req.flash('warning', 'Username/password incorrect');
         res.send({redirect: '/signin'});
       }
     }
@@ -74,14 +74,14 @@ exports.orderDrink = function(req, res){
 
 exports.allUsers = function(req, res){
   models.User.find({}).exec(function(err, users){
-    res.render('allUsers', {title: 'All Users',  me: req.session.user, users:users});
+    res.render('allUsers', {title: 'All Users',  me: req.session.user, users:users, messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
   })
 }
 
 exports.friendProfile = function(req, res){
   models.User.findOne({name: req.params.friend}).populate('_orders').exec(function (err, user){
     var sortedOrders = topOrders(user._orders)
-    res.render('friendProfile', {title: user.name, me: req.session.user, friend: user});
+    res.render('friendProfile', {title: user.name, me: req.session.user, friend: user, messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
   });
 };
 
@@ -104,7 +104,7 @@ function topOrders(_orders) {
 }
 
 exports.addGuest = function(req, res){
-  res.render('addGuest', {title:'Add Guest', me:req.session.user});
+  res.render('addGuest', {title:'Add Guest', me:req.session.user, messages: req.flash('info'), warnings: req.flash('warning'), successes: req.flash('success')});
 }
 
 
