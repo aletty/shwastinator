@@ -22,7 +22,7 @@ exports.profile = function(req, res){
 };
 
 exports.signin = function(req, res){
-    res.render('signin', {title: 'Shwastinator'});
+    res.render('signin', {title: 'Shwastinator', messages: req.flash('info')});
 }
 
 exports.signup = function(req, res){
@@ -52,6 +52,9 @@ exports.login = function(req,res){
       if (success) {
         req.session.user = user[0];
         res.send({redirect: '/'});
+      } else {
+        req.flash('info', 'Username/password incorrect');
+        res.send({redirect: '/signin'});
       }
     }
   });

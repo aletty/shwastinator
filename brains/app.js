@@ -17,6 +17,7 @@ var server = require('http').createServer(app)
   , path = require('path')
   , dev = require('./routes/development')
   , mongoose = require('mongoose')
+  , flash = require('connect-flash');
 
 // all environments
 app.configure(function(){
@@ -29,6 +30,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(flash());
   app.use(express.static(__dirname + "/public"));
   app.use(app.router);
 
@@ -73,6 +75,7 @@ function checkAdmin() {
 }
 
 app.get('/', checkLoggedIn(), routes.index);
+app.get('/testFlash', checkLoggedIn(), dev.testFlash);
 app.get('/signup', user.signup);
 app.get('/signin', user.signin);
 app.get('/profile',  checkLoggedIn(), user.profile);

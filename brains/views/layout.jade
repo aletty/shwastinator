@@ -17,7 +17,14 @@ html
   body.off-canvas
     if (me)
       include navbar
-
+    if (messages)
+      for message in messages
+        .row
+          .small-12.columns
+            div(data-alert='data-alert').alert-box
+              h5 #{message}
+              a(href='#').close
+                &times;
     section(role="main")
       if (me)
         include offcanvasMenu

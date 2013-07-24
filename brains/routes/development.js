@@ -92,3 +92,8 @@ exports.drinks = function(req, res){
 
     res.send("Liquids and drinks populated");
 }
+
+exports.testFlash = function (req, res){
+    req.flash('info', 'Flash works baby!');
+    res.redirect('/');
+}
