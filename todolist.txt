@@ -14,19 +14,23 @@ todo:
 - Allow approved Users to add guests
     ??? should guests be automatically approved????
     
+- On the setup page have it default to the last liquid settings not just 'Empty'
+- Navbar active links
+- Keep people from making blank passwords
+- Only allowed to order drinks when you are approved
+- Max tab - then block from ordering
+- display only drinks that we have ingredients for
+- list ingredients in drinks on order page.....??????
+- Check for duplicate drinks, liquids, usernames
+- photoshop images to correct ratio
+
 ???Tally marks for the night???be could cool... -> only visable to yourself..?
 - See Other User profiles
 - Create new Drinks
 ????Cup size...?????
 ???should we care about alch types??? ie cosik vs smirnoff..
     if we have them as different prices they should still be able to me mixed into drinks that require vodka ..etc.
-- On the setup page have it default to the last liquid settings not just 'Empty'
-- Navbar active links
-- Keep people from making blank passwords
-- Only allowed to order drinks when you are approved
-- display only drinks that we have ingredients for
-- list ingredients in drinks on order page.....??????
-- photoshop images to correct ratio
+
 
 
 

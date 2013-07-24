@@ -9,7 +9,8 @@ var userSchema = new Schema({
     tab: Number,
     image: String,
     guest: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    admin: Boolean
+    admin: Boolean,
+    isguest: Boolean
 });
 
 var User = mongoose.model('User', userSchema);

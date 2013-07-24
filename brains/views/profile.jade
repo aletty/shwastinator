@@ -49,10 +49,3 @@ block content
                     h5 $#{order.price}
           if (!user._orders)
             h3 Dude you need to drink more :)
-
-
-  script.
-    $('#addGuest').click(function(){
-      console.log('addGuest');
-      $.get('/addGuest');
-    })

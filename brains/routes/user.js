@@ -7,13 +7,11 @@ var bcrypt = require('bcrypt');
 
 
 exports.profile = function(req, res){
-  console.log(req.session.user.name);
   models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
     var sortedOrders = topOrders(user._orders);
     if(sortedOrders.length>=3){
       models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
         console.log(sortedOrders);
-        console.log(topDrinks);
         res.render('profile', {title: user.name, user: user, topDrinks:topDrinks});
       });
     } else{
@@ -31,12 +29,11 @@ exports.signup = function(req, res){
     res.render('signup', {title: 'Shwastinator'});
 }
 
-
 exports.create = function(req, res){
   console.log("username:", req.body.username);
   
   var hashedPassword = bcrypt.hashSync(req.body.uncryptpass, 10);
-  var new_user = new models.User({name: req.body.username, password: hashedPassword, approved: false});
+  var new_user = new models.User({name: req.body.username, password: hashedPassword, approved: false, tab:0, admin:false, _orders:[], isguest:false});
   new_user.save(function(err){
     if (err) return console.log("error while saving new user" + req.body.username, err);
       req.session.user = new_user;
@@ -111,4 +108,16 @@ function topOrders(_orders) {
 
 exports.addGuest = function(req, res){
   res.render('addGuest', {title:'Add Guest', user:req.session.user});
+}
+
+
+exports.newGuest = function(req, res){
+  console.log(req.body);
+  var hashedPassword = bcrypt.hashSync(req.body.uncryptpass, 10);
+  var guest_user = new models.User({name: req.body.username, password: hashedPassword, approved: true, tab:0, admin:false, _orders:[], isguest: true});
+  guest_user.save(function(err){
+    if (err) return console.log("error while saving new user" + req.body.username, err);
+  });
+  models.User.update({name:req.session.user.name},
+      {$push: {guest:guest_user}}).exec();
 }
