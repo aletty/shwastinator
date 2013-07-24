@@ -13,9 +13,12 @@ block content
             h5 #{user.name}
 
 
-  script
+  script.
     $('.eachUser').click(function(){
       console.log($(this).attr('name'));
-      $.get('/friendProfile', {friend: $(this).attr('name')});
+      var friend = $(this).attr('name');
+      var data = { friend: friend };
+      console.log(jQuery.isPlainObject( data ));
+      $.get('/friendProfile', data);
       return false;
-    })
+      })
