@@ -84,6 +84,7 @@ app.get('/createUsers', dev.createUsers);
 app.get('/drinks', dev.drinks);
 app.post('/verify', user.login);
 app.get('/createDrinks', checkAdmin(), admin.createDrinks);
+app.post('/saveDrink', checkAdmin(), admin.saveDrink);
 app.post('/saveSetup', checkAdmin(), admin.saveSetup);
 app.get('/approveUsers', checkAdmin(), admin.approveUsers);
 app.post('/approved', admin.approved);
