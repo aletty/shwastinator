@@ -1,4 +1,0 @@
-shwastinator
-============
-
-robotic bartender
