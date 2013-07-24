@@ -7,6 +7,8 @@ todo:
   - for the Whole Bar
   - for users
 
+- Question for arjun - date.now() not viewable ..??
+
 - ALERTS - part of layout!!
 
 - edit drinks
