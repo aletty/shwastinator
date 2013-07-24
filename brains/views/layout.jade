@@ -18,13 +18,13 @@ html
     if (user)
       include navbar
 
-    section(role="main")
+    div(role="main")
       if (user)
         include offcanvasMenu
       block content
 
     if (user)
-      section#sidebar(role="complementary").hide-for-medium-up
+      div#sidebar(role="complementary").hide-for-medium-up
         include sideNavbar
 
     script(src="/javascripts/foundation.min.js")

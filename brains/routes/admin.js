@@ -32,6 +32,29 @@ exports.createDrinks = function(req, res) {
     })
 }
 
+exports.saveDrink = function(req, res) {
+  console.log('saving drink');
+  var drink = new models.Drink({_liquids: [], name: req.body.newDrink.name, cost: parseFloat(req.body.newDrink.cost), price: parseFloat(req.body.newDrink.price), image: req.body.newDrink.image, imageSmall: req.body.newDrink.imageSmall});
+  req.body.newDrink.ingredientList.forEach(function(ingredient, index, array) {
+    models.Liquid.findOne({name: ingredient.name}).exec(function (err, liquid) {
+      if (err) {
+        console.log(err);
+      } else {
+        drink._liquids.push({_liquid: liquid, units: parseInt(ingredient.units)});
+        if (drink._liquids.length == req.body.newDrink.ingredientList.length) {
+          drink.save(function(err){
+            if (err){
+              console.log(err);
+            } else {
+              res.send({redirect: '/createDrinks'});
+            }
+          });
+        }
+      }
+    });
+  });
+}
+
 function updatePump(liquidName, pumpNumber) {
     //takes name of liquid and pump number
     models.Liquid.update({name: liquidName}, {$set: {pump: pumpNumber}}).exec();
