@@ -1,0 +1,6 @@
+[submodule "shwastinator-server"]
+	path = shwastinator-server
+	url = https://github.com/aletty/shwastinator-server.git
+[submodule "brains"]
+	path = brains
+	url = https://github.com/aletty/shwastinator-server.git
