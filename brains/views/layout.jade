@@ -15,15 +15,15 @@ html
     script(src="/javascripts/vendor/jquery.js")
 
   body.off-canvas
-    if (user)
+    if (me)
       include navbar
 
     section(role="main")
-      if (user)
+      if (me)
         include offcanvasMenu
       block content
 
-    if (user)
+    if (me)
       section#sidebar(role="complementary").hide-for-medium-up
         include sideNavbar
 

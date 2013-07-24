@@ -5,13 +5,13 @@ exports.home = function(req, res) {
     console.log(req.session.user)
     models.Liquid.find().exec(function (err, liquids){
         res.render('admin', {title: 'Admin Page', 
-            user: req.session.user, 
+            me: req.session.user, 
             liquids:liquids});        
     })
 }
 
 exports.liquid = function(req, res) {
-    res.render('liquid', {title: 'Add a New Liquid', user: req.session.user});
+    res.render('liquid', {title: 'Add a New Liquid', me: req.session.user});
 }
 
 
@@ -28,7 +28,7 @@ exports.addLiquid = function(req, res){
 
 exports.createDrinks = function(req, res) {
     models.Liquid.find().exec(function (err, liquids){
-        res.render('createDrinks', {title: 'Create Drinks', user: req.session.user, liquids:liquids});        
+        res.render('createDrinks', {title: 'Create Drinks', me: req.session.user, liquids:liquids});        
     })
 }
 
@@ -85,7 +85,7 @@ exports.saveSetup = function(req, res){
 
 exports.approveUsers = function(req, res){
     models.User.find({approved:false}).exec(function (err, users){
-        res.render('ApproveUsers', {title: 'Approve Users', user: req.session.user, users:users});        
+        res.render('ApproveUsers', {title: 'Approve Users', me: req.session.user, users:users});        
     })
 }
 
@@ -98,7 +98,7 @@ exports.approved = function(req,res) {
 
 exports.logPayment = function(req, res) {
     models.User.find().exec(function(err, users){
-        res.render('logPayment', {title: "Log Payment", user:req.session.user, users: users});
+        res.render('logPayment', {title: "Log Payment", me:req.session.user, users: users});
     });
 }
 

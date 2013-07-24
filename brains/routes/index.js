@@ -13,10 +13,10 @@ exports.index = function(req, res){
       if (sortedOrders.length >= 3) {
         models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
           console.log(topDrinks);
-          res.render('index', { title: 'Express', user:req.session.user, drinks:drinks, topDrinks:topDrinks});
+          res.render('index', { title: 'Express', me:req.session.user, drinks:drinks, topDrinks:topDrinks});
         });
       } else {
-        res.render('index', {title: 'Express', user:req.session.user, drinks:drinks});
+        res.render('index', {title: 'Express', me:req.session.user, drinks:drinks});
       }
     });
   });

@@ -9,13 +9,11 @@ nav.top-bar.hide-for-small
   section.top-bar-section
     ul.right
       li
-        a(href='/profile') Profile
-      li
         a(href='/allUsers') All Users
       li
         a(href='/addGuest') Add a Guest
       li.divider
-      if (user.admin)
+      if (me.admin)
         li.has-dropdown
           a(href='/admin') Admin
           ul.dropdown 
@@ -29,6 +27,10 @@ nav.top-bar.hide-for-small
               a(href='/approveUsers') Approve Users
             li
               a(href='/logPayment') Log Payment
+      li.divider
+      li
+        a(href='/profile') #{me.name}
+
 
 script.
   $('.navlink').click(function(){

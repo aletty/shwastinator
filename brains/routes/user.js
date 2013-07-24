@@ -7,15 +7,15 @@ var bcrypt = require('bcrypt');
 
 
 exports.profile = function(req, res){
-  models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, user){
-    var sortedOrders = topOrders(user._orders);
+  models.User.findOne({name: req.session.user.name}).populate('_orders').exec(function (err, me){
+    var sortedOrders = topOrders(me._orders);
     if(sortedOrders.length>=3){
       models.Drink.find({$or: [ {name: sortedOrders[0][0]}, {name: sortedOrders[1][0]}, {name: sortedOrders[2][0]}]}).exec(function (err, topDrinks){
         console.log(sortedOrders);
-        res.render('profile', {title: user.name, user: user, topDrinks:topDrinks});
+        res.render('profile', {title: me.name, me: me, topDrinks:topDrinks});
       });
     } else{
-      res.render('profile', {title: user.name, user: user});
+      res.render('profile', {title: me.name, me: me});
     }
       
   });
@@ -29,9 +29,7 @@ exports.signup = function(req, res){
     res.render('signup', {title: 'Shwastinator'});
 }
 
-exports.create = function(req, res){
-  console.log("username:", req.body.username);
-  
+exports.create = function(req, res){  
   var hashedPassword = bcrypt.hashSync(req.body.uncryptpass, 10);
   var new_user = new models.User({name: req.body.username, password: hashedPassword, approved: false, tab:0, admin:false, _orders:[], isguest:false});
   new_user.save(function(err){
@@ -80,7 +78,7 @@ exports.allUsers = function(req, res){
 exports.friendProfile = function(req, res){
   models.User.findOne({name: req.params.friend}).populate('_orders').exec(function (err, user){
     var sortedOrders = topOrders(user._orders)
-    res.render('friendProfile', {title: user.name, user: req.session.user, friend: user});
+    res.render('friendProfile', {title: user.name, me: req.session.user, friend: user});
   });
 };
 
@@ -103,7 +101,7 @@ function topOrders(_orders) {
 }
 
 exports.addGuest = function(req, res){
-  res.render('addGuest', {title:'Add Guest', user:req.session.user});
+  res.render('addGuest', {title:'Add Guest', me:req.session.user});
 }
 
 
