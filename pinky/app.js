@@ -39,6 +39,9 @@ app.get('/', routes.index);
 
 server.listen(app.get('port'));
 
+
+//communication with brains
+var drinkQueue = [];
 var socket = io.connect('192.168.1.37', {port:4000});
 
 socket.on('connect', function() {
@@ -51,3 +54,9 @@ socket.on('drink', function(data) {
   board.pumpStatus.update(recipe);
   board.boardMethods.processPumps();
 });
+
+exports.finishDrink = function() {
+  drinkQueue.shift();
+  socket.emit('finish drink');
+  return false;
+}

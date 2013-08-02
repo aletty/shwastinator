@@ -1,5 +1,6 @@
 var firmata = require('firmata');
 var async = require('async');
+var app = require('../app.js');
 
 var board = new firmata.Board('/dev/ttyACM0', function(err) {
     if (err){
@@ -116,6 +117,10 @@ var boardMethods = {
             reset: function(callback){
                 pumpStatus.reset();
                 callback(null, 'reset');
+            },
+            finishDrink: function(callback){
+                app.finishDrink();
+                callback(null, 'finishDrink');
             }
         });
     }
