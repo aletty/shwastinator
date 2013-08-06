@@ -49,6 +49,7 @@ socket.on('connect', function() {
 
 socket.on('new drink', function(data) {
   var recipe = data.drink._liquids;
+  console.log(recipe);
   board.boardMethods.setPins();
   board.pumpStatus.update(recipe);
   board.boardMethods.processPumps();
