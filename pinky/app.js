@@ -49,13 +49,11 @@ socket.on('connect', function() {
 });
 
 socket.on('new drink', function(data) {
-  console.log('new drink');
   var recipe = data.drink._liquids;
-  console.log(recipe);
   drinkQueue.push(recipe);
-  // board.boardMethods.setPins();
-  // board.pumpStatus.update(recipe);
-  // board.boardMethods.processPumps();
+  board.boardMethods.setPins();
+  board.pumpStatus.update(recipe);
+  board.boardMethods.processPumps();
 });
 
 exports.finishDrink = function() {

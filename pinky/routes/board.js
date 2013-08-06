@@ -142,7 +142,7 @@ var pumpStatus = {
     13: 0,
     update: function(recipe){
         for (i=0; i<recipe.length; i++){
-            this[recipe[i][0]] = recipe[i][1]*1000;
+            this[recipe[i]._liquid.pump] = recipe[i].units*1000;
         }
     },
     reset: function(){
