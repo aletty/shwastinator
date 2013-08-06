@@ -42,15 +42,17 @@ server.listen(app.get('port'));
 
 //communication with brains
 var drinkQueue = [];
-var socket = io.connect('192.168.2.36', {port:3000});
+var socket = io.connect('192.168.2.36:3000/pi');
 
 socket.on('connect', function() {
   console.log('connected on pi (yummy)');
 });
 
 socket.on('new drink', function(data) {
+  console.log('new drink');
   var recipe = data.drink._liquids;
   console.log(recipe);
+  drinkQueue.push(recipe);
   // board.boardMethods.setPins();
   // board.pumpStatus.update(recipe);
   // board.boardMethods.processPumps();
