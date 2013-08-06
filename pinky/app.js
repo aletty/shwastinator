@@ -45,11 +45,11 @@ var socket = io.connect('192.168.2.36:3000/pi');
 
 socket.on('connect', function() {
   console.log('connected on pi (yummy)');
-  board.boardMethods.setPins();
 });
 
 socket.on('new drink', function(data) {
   var recipe = data.drink._liquids;
+  board.boardMethods.setPins();
   board.pumpStatus.update(recipe);
   board.boardMethods.processPumps();
 });
