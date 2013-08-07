@@ -42,7 +42,7 @@ server.listen(app.get('port'));
 
 //communication with brains
 // var socket = io.connect('192.168.2.36:3000/pi');
-var socket = io.connect('http://shwastinator.herokuapp.com');
+var socket = io.connect('http://shwastinator.herokuapp.com/pi');
 
 socket.on('connect', function() {
   console.log('connected on pi (yummy)');
