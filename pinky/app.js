@@ -49,13 +49,11 @@ socket.on('connect', function() {
 
 socket.on('new drink', function(data) {
   var recipe = data.drink._liquids;
-  console.log('Raw Data:',data.drink._liquids);
   board.boardMethods.setPins();
   board.pumpStatus.update(data.drink._liquids);
   board.boardMethods.processPumps();
 });
 
 exports.finishDrink = function() {
-  console.log('finish drink');
   socket.emit('finish drink');
 }
