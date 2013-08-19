@@ -14,6 +14,7 @@ var board = new firmata.Board('/dev/ttyACM0', function(err) {
 
 var boardMethods = {
     setPins: function(){
+	console.log('setting pins');
         board.pinMode(1, board.MODES.OUTPUT);
         board.pinMode(2, board.MODES.OUTPUT);
         board.pinMode(3, board.MODES.OUTPUT);
@@ -115,6 +116,7 @@ var boardMethods = {
                 } else {callback(null, 13);}
             },            
             reset: function(callback){
+		console.log('done pumping');
                 pumpStatus.reset();
                 callback(null, 'reset');
             },
@@ -140,9 +142,9 @@ var pumpStatus = {
     11: 0,
     12: 0,
     13: 0,
-    update: function(recipe){
+    update: function(recipe, scaling){
         for (i=0; i<recipe.length; i++){
-            this[recipe[i]._liquid.pump] = recipe[i].units*1000;
+            this[recipe[i]._liquid.pump] = recipe[i].units*1000*scaling;
         }
     },
     reset: function(){
