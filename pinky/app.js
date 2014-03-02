@@ -49,9 +49,10 @@ socket.on('connect', function() {
 });
 
 socket.on('new drink', function(data) {
+  console.log(data.drink._liquids);
   var recipe = data.drink._liquids;  
   board.boardMethods.setPins();
-  board.pumpStatus.update(data.drink._liquids, 7.5);
+  board.pumpStatus.update(data.drink._liquids, 2);
   board.boardMethods.processPumps();
 });
 
